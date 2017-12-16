@@ -19,10 +19,9 @@
               <table class="table table-hover" >
               <thead>
                 <td><strong>Item Name</strong></td>
-                <td><strong>Assigned QS</strong></td>
 
                 @if($id==0) 
-                <td><strong>Seller Username</strong></td>
+                <td><strong>Publisher Username</strong></td>
                 @else 
                 <td><strong>Requester Username</strong></td>
                 @endif
@@ -36,11 +35,7 @@
                   <a href="/{{$id}}/{{$Request->id}}/detail" id="{{$Request->id}}" style="color: inherit; font-size: 14px;">
                
                   {{str_limit($Request->name,25)}}</a></td>
-                  @if(is_null($Request->QS))
-                  <td>none</td>
-                  @else
-                  <td>{{$Request->QS->name}}</td> 
-                  @endif
+
                   <td>{{$Request->Customer->username}}</td> 
                 </tr>  
                 @endforeach 

@@ -18,20 +18,20 @@
             <div class="col-md-3">
                 <span class="lead">Categories</span>
                 <div class="list-group" style="padding-top: 20px">
-                    @foreach($artschools as $artschool)
-                    <a href="/home/artschool/{{$artschool->id}}" 
-                    class="list-group-item {{ Request::is('home/artschool/'.$artschool->id) ? 'active' : '' }}"style="height: 40px;">{{$artschool->name}}</a>
+                    @foreach($categories as $category)
+                    <a href="/home/artschool/{{$category->id}}"
+                    class="list-group-item {{ Request::is('home/artschool/'.$category->id) ? 'active' : '' }}"style="height: 40px;">{{$category->name}}</a>
                     @endforeach
-                    @if(count($artschools)==0)
+                    @if(count($categories)==0)
                         <p>There are no categories available.</p>
                     @endif
                 </div>
                 <span class="lead">Colors</span>
                 <div class="list-group" style="padding-top: 20px">
-                    @foreach($colors as $color)
-                    <a href="/home/color/{{$color->id}}" class="list-group-item {{ Request::is('home/color/'.$color->id) ? 'active' : '' }}" style="height: 40px;">{{$color->name}}</a>
+                    @foreach($languages as $language)
+                    <a href="/home/color/{{$language->id}}" class="list-group-item {{ Request::is('home/color/'.$language->id) ? 'active' : '' }}" style="height: 40px;">{{$language->name}}</a>
                     @endforeach
-                    @if(count($colors)==0)
+                    @if(count($languages)==0)
                         <p>There are no colors available.</p>
                     @endif
                 </div>

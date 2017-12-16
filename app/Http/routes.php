@@ -18,8 +18,8 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/home/artschool/{id?}','HomeController@showAllinArtSchool');
-Route::get('/home/color/{id?}','HomeController@showAllinColor');
+Route::get('/home/artschool/{id?}','HomeController@showAllinCategory');
+Route::get('/home/color/{id?}','HomeController@showAllinLanguage');
 Route::get('/aboutus', 'AboutusController@index');
 Route::get('/contactus', 'ContactusController@index');
  
@@ -34,7 +34,7 @@ Route::get('/{id?}/item', 'ItemController@show');		// '?' means sending the id t
 
 Route::get('/search/{keyword?}', 'searchcontroller@search'); //searchcontroller 
 Route::post('/item/{id}/rate','ItemController@rate');			//rate an item
-Route::post('/item/{id?}/{item?}/BS','ItemController@Buy_Similar'); // 
+Route::post('/item/{item?}/BS','ItemController@Buy'); // 
 
 
 // offer item for sale(sell request)/ and special orders
@@ -68,12 +68,11 @@ Route::post('/{id?}/refuse','AdminSell_SpecialController@RefuseSellRequest');//o
 Route::get('/{id?}/{req?}/messages/SS','AdminSell_SpecialController@MsgInSell_Special');
 Route::post('/{id?}/archive/S','AdminSell_SpecialController@ArchiveSpecialOrder');//only for special
 
-//Qs Buy and Similar
-Route::get('/{id?}/show/BS','AdminBuy_SimilarController@ShowBuy_Similar');
-Route::get('/{id?}/{req?}/serve/BS','AdminBuy_SimilarController@ServeBuy_Similar');
-Route::post('/{id?}/{req?}/archive/BS','AdminBuy_SimilarController@ArchiveBuy_Similar');
-Route::get('/{id?}/{req?}/messages/BS','AdminBuy_SimilarController@MsgInBuy_Similar');
-Route::post('/{id?}/{req?}/reoffer/BS','AdminBuy_SimilarController@ReofferItem');
+//Admin Buy requests 
+Route::get('/show/BS','AdminBuyController@ShowBuy');
+Route::get('/{req?}/serve/BS','AdminBuyController@ServeBuy_Similar');
+Route::post('/{req?}/archive/BS','AdminBuyController@ArchiveBuy_Similar');
+Route::post('/{req?}/reoffer/BS','AdminBuyController@ReofferItem');
 
 
 

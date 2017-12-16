@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\SellRequest;
-use App\SellRequestsImage;
+use App\PublisherRequest;
+use App\PublisherRequestsImage;
 use App\SpecialOrder;
 use App\SpecialOrderImage;
 use App\SpecialOrderReply1;
@@ -25,9 +25,9 @@ class AdminSell_SpecialController extends Controller
             abort(404);
         if(Auth::check()&&Auth::user()->role==2)
             {
-            	if($id==0) //sell request
+            	if($id==0) //publisher request
             	{
-            		$Requests= SellRequest::orderBy('created_at', 'DESC')->where('closed','=','false'); 
+            		$Requests= PublisherRequest::orderBy('created_at', 'DESC')->where('closed','=','false'); 
                 	if(!is_null($Requests)) 
                         $Requests=$Requests->paginate(15);
             	}
@@ -50,7 +50,7 @@ class AdminSell_SpecialController extends Controller
                 if($id!=0 && $id!=1)
                     abort(404);
                 if($id==0)
-                        $Request= SellRequest::where('id','=',$req)->where('closed','=',false)->first();
+                        $Request= PublisherRequest::where('id','=',$req)->where('closed','=',false)->first();
                 else
                 	$Request= SpecialOrder::where('id','=',$req)->where('closed','=',false)->first();
 
@@ -58,8 +58,8 @@ class AdminSell_SpecialController extends Controller
                         abort(404);
 
                 $images = $Request->images;
-                $qs=Auth::user()->id;
-                return view('Sell_SpecialDetails',['Request'=>$Request,'images'=>$images,'qs'=>$qs,'id'=>$id]);
+                //$qs=Auth::user()->id;
+                return view('Sell_SpecialDetails',['Request'=>$Request,'images'=>$images,'id'=>$id]);
                 }
         else
             abort(404);
@@ -72,7 +72,7 @@ class AdminSell_SpecialController extends Controller
             	if($id!=0 && $id!=1)
                     abort(404);
                 if($id==0)
-	            	$affected=SellRequest::UpdateReq($req);
+	            	$affected=PublisherRequest::UpdateReq($req);
 	            else
 	            	$affected=SpecialOrder::UpdateReq($req);
 	            
@@ -86,7 +86,7 @@ class AdminSell_SpecialController extends Controller
 
     protected function NewItem($id,$newprice)
     {
-        $sellRequest=SellRequest::where('id','=',$id)->first();
+        $sellRequest=PublisherRequest::where('id','=',$id)->first();
         if($sellRequest==null)
          {abort(404);}
          $newItem= Item::create(array(
@@ -129,7 +129,7 @@ class AdminSell_SpecialController extends Controller
                     { 
                         $this->NewItem($id,$request->input('Price'));
                         // archive
-                        SellRequest::Close($id);
+                        PublisherRequest::Close($id);
                         return view('Done');
                     }
              }
@@ -152,7 +152,7 @@ class AdminSell_SpecialController extends Controller
                 else
                     { 
                         // archive
-                        SellRequest::Close($id);
+                        PublisherRequest::Close($id);
                         return view('Done');
                     }
             }
@@ -170,7 +170,7 @@ class AdminSell_SpecialController extends Controller
             {
                 $reqReplies=SellReply::Get($req);
 
-                $Close=SellRequest::where('id','=',$req)
+                $Close=PublisherRequest::where('id','=',$req)
                     ->select('closed')
                     ->first();
             }

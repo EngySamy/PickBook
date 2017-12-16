@@ -14,23 +14,20 @@ use App\SpecialOrderReply2;
 use App\Item;
 use App\BuyReply;
 
-class AdminBuy_SimilarController extends Controller
+class AdminBuyController extends Controller
 {
-    public function ShowBuy_Similar($id,Request $request)
+    public function ShowBuy( Request $request)
     {
         if(Auth::check()&&Auth::user()->role==2)
             {
-                if($id!=2 && $id!=3)
-                    abort(404);
                 $Requests = null;
-                if($id==2) //buy
-                    $Requests= BuyRequest::orderBy('created_at', 'DESC')->where('closed','=','false'); 
-                else
-                    $Requests= SpecialOrderSimilar::orderBy('created_at', 'DESC')->where('closed','=','false');
+
+                $Requests= BuyRequest::orderBy('created_at', 'DESC')->where('closed','=','false');
+
                 if(!is_null($Requests)) 
                     $Requests=$Requests->paginate(15);
-                $qs=Auth::user()->id;
-                return view('AdminBuy_Similar',['Requests'=>$Requests,'qs'=>$qs,'id'=>$id]);
+
+                return view('AdminBuy',['Requests'=>$Requests]);
             }
         else
             abort(404);

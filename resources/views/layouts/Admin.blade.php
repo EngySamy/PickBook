@@ -31,17 +31,16 @@
         <p class="lead">Go to</p>
             <div class="list-group">
                 <a href="/0/show/SS" class="list-group-item {{ Request::is('0/show/SS') ? 'active' : '' }}" style="height: 40px;">Publisher Requests</a>
-                <a href="/2/show/BS" class="list-group-item {{ Request::is('2/show/BS') ? 'active' : '' }}" style="height: 40px;">Buy Requests</a>
+                <a href="/show/BS" class="list-group-item {{ Request::is('show/BS') ? 'active' : '' }}" style="height: 40px;">Buy Requests</a>
                 <a href="/1/show/SS" class="list-group-item {{ Request::is('1/show/SS') ? 'active' : '' }}" style="height: 40px;">New Special Orders</a>
-                <a href="/3/show/BS" class="list-group-item {{ Request::is('3/show/BS') ? 'active' : '' }}"style="height: 40px;">Similar Special Orders</a>
      
             </div>
 
       </div>
 
       @yield('addrequests')
-     
-       
+
+    </div>
   </div>
 
 </body>

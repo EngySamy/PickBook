@@ -22,16 +22,12 @@ class BuyRequest extends Model
     {
     	return $this->belongsTo('App\Item','item_id');
     }
+    
 
-    public function QS()
-    {
-        return $this->belongsTo('App\User','qs_id');
-    }
-
-    public static function Store($item)
+    /*public static function Store($item)
     {
         DB::table('items')->where('id','=',$item)->update(array('sold'=>true,'buyer_id'=>Auth::user()->id));
-    }
+    }*/
 
     public static function Archive($req)
     {

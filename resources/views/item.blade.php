@@ -25,17 +25,21 @@
                     <div class="col-md-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                @for($i=0;$i<$images->count();$i++)
-                                  <li data-target="#carousel-example-generic" data-slide-to="{{$i}}" class="active"></li>
-                                @endfor
+                                @if($images!=null)
+                                    @for($i=0;$i<$images->count();$i++)
+                                      <li data-target="#carousel-example-generic" data-slide-to="{{$i}}" class="active"></li>
+                                    @endfor
+                                @endif
 
                             </ol>
                             <div class="carousel-inner">
+                                @if($images!=null)
                                 @foreach($images as $index=>$image)
                                     <div class="item @if($index == 0) {{ 'active' }} @endif">
                                         <a href="{{url($image->link)}}"><img class="img-responsive center-block slide-image" style="height:360px; width:auto;" src="{{url($image->link)}}" alt=""/></a>
                                     </div>
                                 @endforeach
+                                    @endif
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
@@ -49,7 +53,7 @@
                         @if(Auth::user()->role==1)
                         <div class="form-group" style="padding-top: 30px; padding-bottom: 20px;">
                         
-                              @if(!$item->sold)
+
                               <h2 class="text-warning" style=" padding-bottom: 10px; text-align: center">AVAILABLE</h2>
                               <div class="span12" style="text-align: center">
                                 
@@ -59,18 +63,7 @@
                                   <span class="glyphicon glyphicon-shopping-cart" style="padding-right: 10px;"></span>Order this item
                                 </button>
                               </div> <!-- //////////////////////////////////////// -->
-                                
 
-                                @else
-                                   <h2 class="text-warning" style=" padding-bottom: 10px; text-align: center">SOLD OUT</h2>
-                                   <h5 class="text-muted" style="text-align: center">Do you like this item? We will see what we can do for you!
-                                   </h5>
-                                   <div class="span12" style="text-align: center">
-                                     <button type="submit" class="btn btn-primary" id="order">
-                                            <span class="glyphicon glyphicon-shopping-cart" style="padding-right: 10px;"></span>Special order an item like this!
-                                      </button>
-                                    </div>
-                                @endif
 
 
                                 <!-- Modal -->
@@ -90,10 +83,10 @@
 
                                       <div class="modal-body" >
                                         <br>
-                                        @if(!$item->sold) 
-                                        <form action="/item/2/{{$item->id}}/BS" method="POST">
+                                        @if(!$item->sold)
+                                        <form action="/item/{{$item->id}}/BS" method="POST">
                                         @else
-                                        <form action="/item/3/{{$item->id}}/BS" method="POST">
+                                        <form action="/item/{{$item->id}}/BS" method="POST">
                                         @endif
                                         <div class="form-group">
                                           <label class="col-md-4 control-label">Confirm Your Password</label>
@@ -142,11 +135,7 @@
                                 </div>
                         </div>
                         @elseif(Auth::user()->role==2||Auth::user()->role==3)
-                           @if(!$item->sold)
-                              <h2 class="text-warning" style=" padding-bottom: 10px; text-align: center">AVAILABLE</h2>
-                            @else
-                            <h2 class="text-warning" style=" padding-bottom: 10px; text-align: center">SOLD OUT</h2>
-                            @endif
+                            <h2 class="text-warning" style=" padding-bottom: 10px; text-align: center">AVAILABLE</h2>
                         @endif
                     </div>
                     </div>
@@ -162,9 +151,9 @@
                             </h4>
 
                           <li style="padding-top: 20px;">
-                            <h4><strong>Art Category </strong>
-                            @if($item->artSchool!=null)
-                            <h5 class="text-muted" style="padding-left: 25px">{{$item->artSchool->name}}</h5>
+                            <h4><strong>Category </strong>
+                            @if($item->category!=null)
+                            <h5 class="text-muted" style="padding-left: 25px">{{$item->category->name}}</h5>
                             @else
                             <h5 class="text-muted" style="padding-left: 25px">None</h5>
                             @endif
@@ -172,19 +161,17 @@
                             
                           </li>
                           <li style="padding-top: 20px;">
-                            <h4> <strong>Type of colors </strong>
-                            @if($item->colorType!=null)
-                            <h5 class="text-muted" style="padding-left: 25px">{{$item->colorType->name}}</h5>
+                            <h4> <strong>Language </strong>
+                            @if($item->language!=null)
+                            <h5 class="text-muted" style="padding-left: 25px">{{$item->language->name}}</h5>
                             @else
                             <h5 class="text-muted" style="padding-left: 25px">None</h5>
                             @endif
                             </h4>     
                           </li>
                           <li style="padding-top: 20px;">
-                              <h4><strong>Dimensions </strong>
-                              <h5 class="text-muted" style="padding-left: 25px">Length: {{$item->length}} cm</h5>
-                              <h5 class="text-muted" style="padding-left: 25px">Width: {{$item->width}} cm</h5>
-                              <h5 class="text-muted" style="padding-left: 25px">Height: {{$item->height}} cm</h5>
+                              <h4><strong>Author </strong>
+                              <h5 class="text-muted" style="padding-left: 25px">{{$item->author}} </h5>
                               </h4>
                           </li>
                           <li style="padding-top: 20px;">

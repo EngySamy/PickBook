@@ -6,23 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    protected $fillable = ['name', 'width' ,'length', 'height' , 'price' , 'colortype_id' , 'artschool_id' ,'seller_id']; //this is required for insertion in tinker!
+    protected $fillable = ['name', 'author', 'price' , 'language_id' , 'category_id' ,'publisher_id']; //this is required for insertion in tinker!
 
     /*Relationships definitions for fast access. This is the benefit of ORM. These functions are equivalent to multiple selects and joins.*/
 
-    public function artSchool()
+    public function category()
     {
-    	return $this->belongsTo('App\ArtSchool','artschool_id');
+        return $this->belongsTo('App\Category','category_id');
     }
 
-    public function colorType()
+    public function language()
     {
-    	return $this->belongsTo('App\ColorType','colortype_id');
+        return $this->belongsTo('App\Language','language_id');
     }
 
     public function Customer()
     {
-    	return $this->belongsTo('App\User','seller_id');
+    	return $this->belongsTo('App\User','publisher_id');
     }
 
     public function Raters()
