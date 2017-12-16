@@ -16,12 +16,12 @@
     {
         margin: 0 auto; 
         text-align: center; 
-        border-color: #dddddd; 
+        border-color: #dddddd;
         background-color: #f5f5f5; 
         width: 500px;
         
     }
-}
+
 </style>
  
 @endsection

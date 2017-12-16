@@ -13,20 +13,20 @@
 
 <div class="container">
 
-        
+
         <div class="row">
             <div class="col-md-3">
                 <span class="lead">Categories</span>
                 <div class="list-group" style="padding-top: 20px">
                     @foreach($artschools as $artschool)
-                    <a href="/home/artschool/{{$artschool->id}}" 
+                    <a href="/home/artschool/{{$artschool->id}}"
                     class="list-group-item {{ Request::is('home/artschool/'.$artschool->id) ? 'active' : '' }}"style="height: 40px;">{{$artschool->name}}</a>
                     @endforeach
                     @if(count($artschools)==0)
                         <p>There are no categories available.</p>
                     @endif
                 </div>
-                <span class="lead">Colors</span>
+                <span class="lead">Language</span>
                 <div class="list-group" style="padding-top: 20px">
                     @foreach($colors as $color)
                     <a href="/home/color/{{$color->id}}" class="list-group-item {{ Request::is('home/color/'.$color->id) ? 'active' : '' }}" style="height: 40px;">{{$color->name}}</a>
@@ -46,18 +46,18 @@
                     <div class="btn-group pull-right">
                         <a href="/home/0/index" class="btn btn-primary btn1">Sell</a>
                         <a href="home/1/index" class="btn btn-primary btn2" >Special Order</a>
-                        
+
                       </div>
                        <script>
                         $(document).ready(function(){
-                            $('.btn1').tooltip({title: "Offer Item for Sale", animation: true,delay: 400,placement: "bottom"}); 
+                            $('.btn1').tooltip({title: "Offer Item for Sale", animation: true,delay: 400,placement: "bottom"});
                         });
-                        </script> 
+                        </script>
                       <script>
                         $(document).ready(function(){
-                            $('.btn2').tooltip({title: "Order Item with Special Requirements", animation: true,delay: 400,placement: "bottom"}); 
+                            $('.btn2').tooltip({title: "Order Item with Special Requirements", animation: true,delay: 400,placement: "bottom"});
                         });
-                        </script> 
+                        </script>
                     @endif
                     </div>
                 </div>
@@ -91,12 +91,12 @@
                                 @endfor
                                 @for($i=0;$i<5-$item->AverageRating();$i++)
                                     <span class="glyphicon glyphicon-star-empty gold"></span>
-                                @endfor 
+                                @endfor
                             </div>
                         </div>
                     </div>
                     </a>
-                    @endforeach            
+                    @endforeach
                 </div>
              <div class="text-center">
                     {!! $items->render() !!}    <!--Display Dynamic Pagination at the bottom-->
@@ -111,7 +111,7 @@
                             <div class="row">&nbsp;</div>
                             <div class="row">&nbsp;</div>
                         </div>
-              @endif     
+              @endif
         </div>
 
     </div>

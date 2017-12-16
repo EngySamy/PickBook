@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Djerba @yield('title')</title>
+    <title>PickBook @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="/assets/font-awesome-4.6.3/css/font-awesome.min.css">
@@ -32,7 +32,7 @@
             margin-right: 6px;
         }
     </style>
-  
+
 </head>
 <body id="app-layout">
 
@@ -42,18 +42,18 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#app-navbar-collapse">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
-                            <span class="icon-bar"></span> 
+                            <span class="icon-bar"></span>
                     </button>
                                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Djerba
+                    PickBook
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li @yield('HomeisActive')><a href="{{ url('/home') }}">{{htmlentities('Art & Antiques')}}</a></li>
+                    <li @yield('HomeisActive')><a href="{{ url('/home') }}">{{htmlentities('Books')}}</a></li>
                     <li @yield('AboutusisActive')><a href="{{ url('/aboutus') }}">About US</a></li>
                     <li @yield('ContactusisActive')><a href="{{ url('/contactus') }}">Contact US</a></li>
                 </ul>
@@ -86,13 +86,13 @@
 
                             </ul>
                         </li>
-                       
+
                     @endif
                     <li>
                          <form id="tfnewsearch" method="get" action="/search">
                                <input type="text" id="tfq" class="tftextinput2" name="keyword" size="18" maxlength="120" placeholder="Search.."><input type="submit" value="Go" class="tfbutton2">
-                         </form>  
-                    </li> 
+                         </form>
+                    </li>
 
                 </ul>
             </div>
@@ -106,7 +106,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-    
+
     <footer class="navbar-inverse navbar-fixed-bottom">
           <div class="container-fluid">
             <p class="text-center" style="color:#FFFFFF; font-size:12px;">&copy2016 Delta Systems. All rights reserved.</p>

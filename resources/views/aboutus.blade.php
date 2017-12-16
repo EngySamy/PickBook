@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container-fluid">
-   <img src="/assets/images/palette.jpg" alt="Palette Image" class="img-responsive center-block" style="width: 100%; display: block;"/>
+   <img src="/assets/images/bookstore.jpg" alt="bookstore Image" class="img-responsive center-block" style="width: 100%; display: block;"/>
 </div>
 
 <style>
