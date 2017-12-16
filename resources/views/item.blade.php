@@ -60,7 +60,7 @@
 
                                 <!-- For Buy Request -->
                                 <button type="button" class="btn btn-primary" id="order">
-                                  <span class="glyphicon glyphicon-shopping-cart" style="padding-right: 10px;"></span>Order this item
+                                  <span class="glyphicon glyphicon-shopping-cart" style="padding-right: 10px;"></span>Order this Book
                                 </button>
                               </div> <!-- //////////////////////////////////////// -->
 
@@ -146,7 +146,7 @@
                         <h4 class="text-center"><a href="#">{{$item->name}}</a></h4>
                         <ul>
                           <li style="padding-top: 20px;">
-                            <h4><strong>Item No. </strong>
+                            <h4><strong>Book No. </strong>
                             <h5 class="text-muted" style="padding-left: 25px">{{$item->id}}</h5>
                             </h4>
 
