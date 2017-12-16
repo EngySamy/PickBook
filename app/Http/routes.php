@@ -18,8 +18,8 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/home/artschool/{id?}','HomeController@showAllinArtSchool');
-Route::get('/home/color/{id?}','HomeController@showAllinColor');
+Route::get('/home/artschool/{id?}','HomeController@showAllinCategory');
+Route::get('/home/color/{id?}','HomeController@showAllinLanguage');
 Route::get('/aboutus', 'AboutusController@index');
 Route::get('/contactus', 'ContactusController@index');
  
@@ -34,7 +34,7 @@ Route::get('/{id?}/item', 'ItemController@show');		// '?' means sending the id t
 
 Route::get('/search/{keyword?}', 'searchcontroller@search'); //searchcontroller 
 Route::post('/item/{id}/rate','ItemController@rate');			//rate an item
-Route::post('/item/{id?}/{item?}/BS','ItemController@Buy_Similar'); // 
+Route::post('/item/{item?}/BS','ItemController@Buy'); // 
 
 
 // offer item for sale(sell request)/ and special orders
@@ -56,24 +56,23 @@ Route::get('/{id?}/{req?}/inbox/msg', 'MsgsController@Msg');
 Route::post('/{id?}/{req?}/reply', 'MsgsController@Reply'); //common for qs and customer !! 
 
 //QS Home
-Route::get('/QShome','QShomeController@index');
-Route::get('/{customer?}/customer','QShomeController@ShowCustomerInfo');
+Route::get('/QShome','AdminHomeController@index');
+Route::get('/{customer?}/customer','AdminHomeController@ShowCustomerInfo');
 
 //Qs Sell and Special
-Route::get('/{id?}/show/SS','QSSell_SpecialController@ShowSell_Special'); //show sell id:0 ,special id:1
-Route::get('/{id?}/{req?}/detail','QSSell_SpecialController@ShowSell_SpecialDetail');//detail sell0,sp1
-Route::get('/{id?}/{req?}/serve/SS','QSSell_SpecialController@ServeSell_Special');//serve sell0special1
-Route::post('/{id?}/accept','QSSell_SpecialController@AcceptSellRequest');//only for sell
-Route::post('/{id?}/refuse','QSSell_SpecialController@RefuseSellRequest');//only for sell
-Route::get('/{id?}/{req?}/messages/SS','QSSell_SpecialController@MsgInSell_Special');
-Route::post('/{id?}/archive/S','QSSell_SpecialController@ArchiveSpecialOrder');//only for special
+Route::get('/{id?}/show/SS','AdminSell_SpecialController@ShowSell_Special'); //show sell id:0 ,special id:1
+Route::get('/{id?}/{req?}/detail','AdminSell_SpecialController@ShowSell_SpecialDetail');//detail sell0,sp1
+Route::get('/{id?}/{req?}/serve/SS','AdminSell_SpecialController@ServeSell_Special');//serve sell0special1
+Route::post('/{id?}/accept','AdminSell_SpecialController@AcceptSellRequest');//only for sell
+Route::post('/{id?}/refuse','AdminSell_SpecialController@RefuseSellRequest');//only for sell
+Route::get('/{id?}/{req?}/messages/SS','AdminSell_SpecialController@MsgInSell_Special');
+Route::post('/{id?}/archive/S','AdminSell_SpecialController@ArchiveSpecialOrder');//only for special
 
-//Qs Buy and Similar
-Route::get('/{id?}/show/BS','QSBuy_SimilarController@ShowBuy_Similar');
-Route::get('/{id?}/{req?}/serve/BS','QSBuy_SimilarController@ServeBuy_Similar');
-Route::post('/{id?}/{req?}/archive/BS','QSBuy_SimilarController@ArchiveBuy_Similar');
-Route::get('/{id?}/{req?}/messages/BS','QSBuy_SimilarController@MsgInBuy_Similar');
-Route::post('/{id?}/{req?}/reoffer/BS','QSBuy_SimilarController@ReofferItem');
+//Admin Buy requests 
+Route::get('/show/BS','AdminBuyController@ShowBuy');
+Route::get('/{req?}/serve/BS','AdminBuyController@ServeBuy_Similar');
+Route::post('/{req?}/archive/BS','AdminBuyController@ArchiveBuy_Similar');
+Route::post('/{req?}/reoffer/BS','AdminBuyController@ReofferItem');
 
 
 

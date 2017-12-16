@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\ArtSchool;
-use App\ColorType;
+use App\Category;
+use App\Language;
 use App\Item;
 use App\BuyReply;
 use App\BuyRequest;
 use App\SellReply;
-use App\SellRequest;
+use App\PublisherRequest;
 use App\SpecialOrderReply;
 use DB;
 use Auth;
@@ -37,35 +37,35 @@ class HomeController extends Controller
         $items = item::with('images');
         if(!is_null($items))
             $items=$items->paginate(5);        //Display 10 items per page! This is magic! //Eager Loading!
-        $artschools = HomeController::showArtSchools();
-        $colors = HomeController::showColorTypes();
-        return view('home',['artschools'=>$artschools,'colors'=>$colors,'items'=>$items]);
+        $categories = HomeController::showCategories();
+        $languages = HomeController::showLanguages();
+        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items]);
     }
 
-    public function showArtSchools()
+    public function showCategories()
     {
-        return ArtSchool::orderBy('name')->get();        //Sort ascendingly
+        return Category::orderBy('name')->get();        //Sort ascendingly
     }
 
-    public function showColorTypes()
+    public function showLanguages()
     {
-        return ColorType::orderBy('name')->get();
+        return Language::orderBy('name')->get();
     }
 
-    public function showAllinArtSchool($id,Request $request)
+    public function showAllinCategory($id, Request $request)
     {
-        $items = Item::where('artschool_id','=',$id)->paginate(10);
-        $artschools = HomeController::showArtSchools();
-        $colors = HomeController::showColorTypes();
-        return view('home',['artschools'=>$artschools,'colors'=>$colors,'items'=>$items]);
+        $items = Item::where('category_id','=',$id)->paginate(10);
+        $categories = HomeController::showCategories();
+        $languages = HomeController::showLanguages();
+        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items]);
     }
 
-    public function showAllinColor($id,Request $request)
+    public function showAllinLanguage($id, Request $request)
     {
-        $items = Item::where('colortype_id','=',$id)->paginate(10);
-        $artschools = HomeController::showArtSchools();
-        $colors = HomeController::showColorTypes();
-        return view('home',['artschools'=>$artschools,'colors'=>$colors,'items'=>$items]);
+        $items = Item::where('language_id','=',$id)->paginate(10);
+        $categories = HomeController::showCategories();
+        $languages = HomeController::showLanguages();
+        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items]);
     }
 
     

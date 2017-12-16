@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SellRequestsImage extends Model ////////////////////////Requests
+class PublisherRequestsImage extends Model ////////////////////////Requests
 {
     //
-    protected $table = 'sellrequest_images'; 
+    protected $table = 'publisher_requests_images';
      protected $fillable = [
         'link','request_id'
     ];

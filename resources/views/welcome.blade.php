@@ -2,7 +2,6 @@
 
 @section('content')
 <body>
-
   <table style="width:100%">
       <tr>
           <th>  <div class="jumbotron text-center">

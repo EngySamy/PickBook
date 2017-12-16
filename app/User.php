@@ -27,7 +27,7 @@ class User extends Authenticatable
 
     public function InterestedIn()        //interested in categories!
     {
-        return $this->belongsToMany('App\ArtSchool','customer_interests','user_id','artschool_id');
+        return $this->belongsToMany('App\Category','customer_interests','user_id','category_id');
     }
 
     public static function UpdateData($data)

@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use Redirect;
 use Auth;
 use App\Http\Requests;
-use App\ArtSchool;
-use App\ColorType;
+use App\Category;
+use App\Language;
 use Validator;
 use App\Providers\ValidatorProvider;
 use Illuminate\Support\Facades\Input;
-use App\SellRequest;
-use App\SellRequestsImage;
+use App\PublisherRequest;
+use App\PublisherRequestsImage;
 use App\SpecialOrder;
 use App\SpecialOrderImage;
 
@@ -46,12 +46,12 @@ class OfferItemController extends Controller
 
     protected function showArtSchools()
     {
-        return ArtSchool::orderBy('name')->get();        
+        return Category::orderBy('name')->get();        
     }
 
     protected function showColorTypes()
     {
-        return ColorType::orderBy('name')->get();
+        return Language::orderBy('name')->get();
     }
 
     public function NewValidate ( Request $request) 
@@ -97,7 +97,7 @@ class OfferItemController extends Controller
         if($ReturnCode != 1)
             return $ReturnCode;
 
-    	$sell_request=SellRequest::create([
+    	$sell_request=PublisherRequest::create([
     		'name' => $data['Item_Name'],
     		'width' => $data['Width'],
     		'length' => $data['Length'],
@@ -116,7 +116,7 @@ class OfferItemController extends Controller
 
         foreach($array as $x)
         {
-            $sell_request_image=SellRequestsImage::create([
+            $sell_request_image=PublisherRequestsImage::create([
             'link' => '/imgitems/'.$x,
             'request_id'=>$request_id
             ]);

@@ -39,11 +39,11 @@ class ItemController extends Controller
             }
 
             $images = $item->images;
-            $user_rate=0;
+
             //if(Auth::check())
             //{
                 $user_id = Auth::user()->id;
-                $user_rate = ItemController::getRatingForUser($item,$user_id);
+                $user_rate = ItemController::getRatingForUser($itemid,$user_id);
             //}
 
             $avg = $item->AverageRating();
@@ -94,45 +94,26 @@ class ItemController extends Controller
     protected function StoreBuyRequest ($item)
     {
        $check=BuyRequest::where('item_id','=',$item)->where('buyer_id','=',Auth::user()->id)->first();
- 
-       $check2=Item::where('id','=',$item)->select('seller_id','sold')->first();
+        if(count($check)!=0)
+            return -1;
 
-       if(count($check)!=0&&$check2->sold==true)
-           return -1; //item sold and the button still exist ! because another one ordered from little time
-     
-       if($check2->seller_id==Auth::user()->id)
-            return -2; // the seller is the buyer !!
+       $check2=Item::where('id','=',$item)->select('publisher_id')->first();
+       if($check2->publisher_id==Auth::user()->id)
+            return -2; // the publisher is the buyer !!
+        
         $buyRequest = BuyRequest::create([
           'name'=>Item::where('id','=',$item)->select('name')->first()->name,
           'item_id'=>$item,
           'buyer_id'=>Auth::user()->id,  
         ]);
-        BuyRequest::Store($item);
+
         return 1;
 
     }
 
-    protected function CheckExist_StoreSimilarOrder ($item)
-    {
-        $check=SpecialOrderSimilar::where('similaritem_id','=',$item)->where('requester_id','=',Auth::user()->id)->first();
-        if(count($check)!=0)
-           return 0;
-       $check2=Item::where('id','=',$item)->select('seller_id','buyer_id')->first();
-       if($check2->seller_id==Auth::user()->id)
-            return -2; //the seller is the requester!!
-        $similarOrder = SpecialOrderSimilar::create([
-          'name'=>Item::where('id','=',$item)->select('name')->first()->name,
-          'similaritem_id'=>$item,
-          'requester_id'=>Auth::user()->id,  
-        ]);
-        return 1;
 
-    }
-
-    public function Buy_Similar($id,$item, Request $request) // id to choose between buy request and similar special order
+    public function Buy($item, Request $request) // id to choose between buy request and similar special order
     {
-        if($id!=2 && $id!=3)
-            abort(404);
         if(Auth::check()&&Auth::user()->role==1)
         {
             $rules = [
@@ -144,16 +125,14 @@ class ItemController extends Controller
                 {return redirect()->back()->withErrors($validator)->withInput()->with('message', 'Wrong Password. Try again please.');}
             else
                 {
-                    if($id==2) //buy req 
-                        $check=$this->StoreBuyRequest($item);
-                    else //similar sp order
-                        $check=$this->CheckExist_StoreSimilarOrder($item);
-                    if($check==0)
-                        return redirect()->back()->with('message', 'You have already ordered this special order !');
-                    elseif($check==-1)
-                        return redirect()->back()->with('message', 'This item has been already sold . We are Sorry.');
-                    elseif ($check==-2) {
-                        return redirect()->back()->with('message', 'You are the seller of this item! You can not order it.');
+                     //buy req
+                    $check=$this->StoreBuyRequest($item);
+
+                    if ($check==-2) {
+                        return redirect()->back()->with('message', 'You are the publisher of this book! You can not order it.');
+                    }
+                    elseif($check==-1) {
+                        return redirect()->back()->with('message', 'You have been ordered this book previously!');
                     }
                     else
                         return redirect('/home/ThankYou');

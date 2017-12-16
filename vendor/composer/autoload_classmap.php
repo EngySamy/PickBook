@@ -6,10 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreateArtSchoolsTable' => $baseDir . '/database/migrations/2016_04_21_184110_create_art_schools_table.php',
+    'CreateArtSchoolsTable' => $baseDir . '/database/migrations/2016_04_21_184110_create_categories_table.php',
     'CreateBuyRepliesTable' => $baseDir . '/database/migrations/2016_04_21_195426_create_buy_replies_table.php',
     'CreateBuyRequestsTable' => $baseDir . '/database/migrations/2016_04_21_195420_create_buy_requests_table.php',
-    'CreateColorTypesTable' => $baseDir . '/database/migrations/2016_04_21_184314_create_color_types_table.php',
+    'CreateColorTypesTable' => $baseDir . '/database/migrations/2016_04_21_184314_create_languages_table.php',
     'CreateComplaintsTable' => $baseDir . '/database/migrations/2016_04_21_191532_create_complaints_table.php',
     'CreateCustomerInterestsTable' => $baseDir . '/database/migrations/2016_04_21_185851_create_customer_interests_table.php',
     'CreateItemImagesTable' => $baseDir . '/database/migrations/2016_04_21_193331_create_item_images_table.php',

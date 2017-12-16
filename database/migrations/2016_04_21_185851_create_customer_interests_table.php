@@ -14,12 +14,12 @@ class CreateCustomerInterestsTable extends Migration
     {
         Schema::create('customer_interests', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->integer('artschool_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('artschool_id')->references('id')->on('art_schools')->onUpdate('cascade')->onDelete('cascade');
-            $table->primary(array('artschool_id','user_id'));
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->primary(array('category_id','user_id'));
         });
     }
 
