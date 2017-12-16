@@ -1,0 +1,50 @@
+@extends('layouts.app')
+
+@section('includes')
+ <script src="/assets/js/vendor/jquery.min.js"></script>
+<style>
+.body1 {
+   
+    text-align: center;
+    }
+    li.buy
+    {
+        list-style-type: none;
+        padding: 3px;
+        padding-left: 35px;
+    }
+.list-group-item:hover,
+.list-group-item:focus {
+  background-color: #f5f5f5;
+}
+</style>
+
+
+
+@endsection
+
+@section('content')
+<body>
+<div class="container">    
+    <div class="row">
+      <div class="col-md-3">
+        <p class="lead">Go to</p>
+            <div class="list-group">
+                <a href="/0/show/SS" class="list-group-item {{ Request::is('0/show/SS') ? 'active' : '' }}" style="height: 40px;">Sell Requests</a>
+                <a href="/2/show/BS" class="list-group-item {{ Request::is('2/show/BS') ? 'active' : '' }}" style="height: 40px;">Buy Requests</a>
+                <a href="/1/show/SS" class="list-group-item {{ Request::is('1/show/SS') ? 'active' : '' }}" style="height: 40px;">New Special Orders</a>
+                <a href="/3/show/BS" class="list-group-item {{ Request::is('3/show/BS') ? 'active' : '' }}"style="height: 40px;">Similar Special Orders</a>
+     
+            </div>
+
+      </div>
+
+      @yield('addrequests')
+     
+       
+  </div>
+
+</body>
+
+
+@endsection
