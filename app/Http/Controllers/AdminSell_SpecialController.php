@@ -17,7 +17,7 @@ use DB;
 use Validator;
 use App\Item;
 
-class QSSell_SpecialController extends Controller
+class AdminSell_SpecialController extends Controller
 {
     public function ShowSell_Special($id,Request $request)
     {
@@ -37,7 +37,7 @@ class QSSell_SpecialController extends Controller
                         $Requests=$Requests->paginate(15);
             	}
                 
-                return view('QSSell_Special',['Requests'=>$Requests,'id'=>$id]);
+                return view('AdminSell_Special',['Requests'=>$Requests,'id'=>$id]);
             }
         else
             abort(404);

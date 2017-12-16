@@ -14,7 +14,7 @@ use App\SpecialOrderReply2;
 use App\Item;
 use App\BuyReply;
 
-class QSBuy_SimilarController extends Controller
+class AdminBuy_SimilarController extends Controller
 {
     public function ShowBuy_Similar($id,Request $request)
     {
@@ -30,7 +30,7 @@ class QSBuy_SimilarController extends Controller
                 if(!is_null($Requests)) 
                     $Requests=$Requests->paginate(15);
                 $qs=Auth::user()->id;
-                return view('QSBuy_Similar',['Requests'=>$Requests,'qs'=>$qs,'id'=>$id]);
+                return view('AdminBuy_Similar',['Requests'=>$Requests,'qs'=>$qs,'id'=>$id]);
             }
         else
             abort(404);

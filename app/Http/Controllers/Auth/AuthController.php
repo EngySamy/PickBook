@@ -111,7 +111,7 @@ class AuthController extends Controller
 
         $insertedID = $user->id;
         $user->username = strtolower($data['First_Name'][0]).strtolower($data['Last_Name'][0]).($insertedID*11).rand(100,999);
-        $user->role=1;
+        $user->role=2;
         $user->save();
         return $user;
     }

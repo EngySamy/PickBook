@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Redirect;
 use Auth;
 use App\Http\Requests;
-use App\ArtSchool;
-use App\ColorType;
+use App\Category;
+use App\Language;
 use Validator;
 use App\Providers\ValidatorProvider;
 use Illuminate\Support\Facades\Input;
@@ -46,12 +46,12 @@ class OfferItemController extends Controller
 
     protected function showArtSchools()
     {
-        return ArtSchool::orderBy('name')->get();        
+        return Category::orderBy('name')->get();        
     }
 
     protected function showColorTypes()
     {
-        return ColorType::orderBy('name')->get();
+        return Language::orderBy('name')->get();
     }
 
     public function NewValidate ( Request $request) 

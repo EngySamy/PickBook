@@ -10,7 +10,7 @@
        -moz-border-radius: 8px;
             border-radius: 8px;
             margin: 20px;
-    }
+
 }
   
 </style>
@@ -26,7 +26,7 @@
   <div class="row">
   <div class="col-md-6 text-center ">
     <form action="/0/show/SS">
-        <button class="btn btn-primary btn-xlarge" data-toggle="tooltip" data-placement="left" ><i class="fa fa-money fa-btn"></i>Sell Requests</button>
+        <button class="btn btn-primary btn-xlarge" data-toggle="tooltip" data-placement="left" ><i class="fa fa-book fa-btn"></i>Publisher Requests</button>
     </form>
   
     <form action="/2/show/BS">

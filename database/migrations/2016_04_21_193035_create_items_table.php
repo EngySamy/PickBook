@@ -20,14 +20,14 @@ class CreateItemsTable extends Migration
             $table->double('length', 15, 8)->nullable(false);
             $table->double('height', 15, 8)->nullable(false);
             $table->double('price', 15, 8)->nullable(false);
-            $table->integer('colortype_id')->nullable(false)->unsigned();
-            $table->integer('artschool_id')->nullable(false)->unsigned();
+            $table->integer('language_id')->nullable(false)->unsigned();
+            $table->integer('category_id')->nullable(false)->unsigned();
             $table->boolean('sold')->default(false);
             $table->integer('rating')->unsigned()->default(0);
             $table->integer('buyer_id')->unsigned()->nullable();   //after closing the buy request 
             $table->integer('seller_id')->unsigned();
-            $table->foreign('colortype_id')->references('id')->on('color_types')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreign('artschool_id')->references('id')->on('art_schools')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('language_id')->references('id')->on('languages')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('buyer_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('seller_id')->references('id')->on('users');
             $table->timestamps();

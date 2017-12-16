@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSellrequestImagesTable extends Migration
+class CreatePublisherRequestImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateSellrequestImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sellrequest_images', function (Blueprint $table) {
+        Schema::create('publisher_requests_images', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->string('link')->default("");
             $table->integer('request_id')->unsigned()->nullable(false);
-            $table->foreign('request_id')->references('id')->on('sell_requests')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('request_id')->references('id')->on('publisher_requests')->onUpdate('cascade')->onDelete('cascade');
             $table->primary(['link', 'request_id']);
             $table->timestamps();
         });

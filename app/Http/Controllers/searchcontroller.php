@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 
-use App\ArtSchool;
-use App\ColorType;
+use App\Category;
+use App\Language;
 use App\Item;
 
 class searchcontroller extends Controller
@@ -28,12 +28,12 @@ class searchcontroller extends Controller
    	}
    	public function showArtSchools()
     {
-        return ArtSchool::orderBy('name')->get();        //Sort ascendingly
+        return Category::orderBy('name')->get();        //Sort ascendingly
     }
 
     public function showColorTypes()
     {
-        return ColorType::orderBy('name')->get();
+        return Language::orderBy('name')->get();
     }
 
 

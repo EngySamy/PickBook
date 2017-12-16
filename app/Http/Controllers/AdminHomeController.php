@@ -17,12 +17,12 @@ use Auth;
 use App\SpecialOrder;
 use App\Providers\ValidatorProvider;
 
-class QShomeController extends Controller
+class AdminHomeController extends Controller
 {
     public function index(Request $request)
     {
         if(Auth::check()&&Auth::user()->role==2)
-            return view('QShome');
+            return view('AdminHome');
         else
             abort(404);
         

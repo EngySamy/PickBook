@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\ArtSchool;
-use App\ColorType;
+use App\Category;
+use App\Language;
 use App\Item;
 use App\BuyReply;
 use App\BuyRequest;
@@ -44,12 +44,12 @@ class HomeController extends Controller
 
     public function showArtSchools()
     {
-        return ArtSchool::orderBy('name')->get();        //Sort ascendingly
+        return Category::orderBy('name')->get();        //Sort ascendingly
     }
 
     public function showColorTypes()
     {
-        return ColorType::orderBy('name')->get();
+        return Language::orderBy('name')->get();
     }
 
     public function showAllinArtSchool($id,Request $request)

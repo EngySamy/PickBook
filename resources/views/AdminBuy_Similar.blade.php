@@ -1,4 +1,4 @@
-@extends('layouts.QS')
+@extends('layouts.Admin')
 
 @section('addrequests')
 
