@@ -73,7 +73,7 @@
                  @if($reqReplies[$i]->isCustomer ==true)
                   <span class="name" style="min-width: 120px;display: inline-block;"><strong>You:</strong></span>
                   @else
-                  <span class="name" style="min-width: 120px;display: inline-block;"><strong>Djerba:</strong></span>
+                  <span class="name" style="min-width: 120px;display: inline-block;"><strong>PickBook:</strong></span>
                   @endif
                    <span >{{str_limit($reqReplies[$i]->text,30)}}</span>
                    <span class="pull-right"> <!-- -->

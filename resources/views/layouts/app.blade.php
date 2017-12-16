@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Djerba @yield('title')</title>
+    <title>PickBook @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="/assets/font-awesome-4.6.3/css/font-awesome.min.css">
@@ -46,7 +46,7 @@
                     </button>
                                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Djerba
+                    PickBook
                 </a>
             </div>
 
