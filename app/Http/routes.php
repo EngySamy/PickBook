@@ -37,10 +37,10 @@ Route::post('/item/{id}/rate','ItemController@rate');			//rate an item
 Route::post('/item/{item?}/BS','ItemController@Buy'); // 
 
 
-// offer item for sale(sell request)/ and special orders
-Route::get('/home/{id?}/index','OfferItemController@index');	//0 id for sell , 1 special
-Route::post('/home/{id?}/Submit','OfferItemController@Submit'); //submit sell request or special order
-Route::get('/home/ThankYou','OfferItemController@ThankYou');
+// offer item   (publisher request)/ and special orders
+Route::get('/home/{id?}/index','NewItemController@index');	//0 id for sell , 1 special
+Route::post('/home/{id?}/Submit','NewItemController@Submit'); //submit sell request or special order
+Route::get('/home/ThankYou','NewItemController@ThankYou');
 
 //User Profile
 Route::get('/myprofile', 'UserProfileController@View');
@@ -50,16 +50,15 @@ Route::post('/myprofile/changepassword','UserProfileController@ChangePassword');
 
 Route::get('/{id?}/profile','ProfileItemsController@index');
 
-//Messages
-Route::get('/{id?}/inbox', 'MsgsController@Inbox');
-Route::get('/{id?}/{req?}/inbox/msg', 'MsgsController@Msg');
-Route::post('/{id?}/{req?}/reply', 'MsgsController@Reply'); //common for qs and customer !! 
 
-//QS Home
-Route::get('/QShome','AdminHomeController@index');
+//Admin Home
+Route::get('/AdminHome','AdminHomeController@index');
 Route::get('/{customer?}/customer','AdminHomeController@ShowCustomerInfo');
 
-//Qs Sell and Special
+Route::get('/Admin/AddPublisher','AdminHomeController@ViewAddPublisher');
+Route::post('/Admin/AddPublisher/Add','AdminHomeController@AddPublisher');
+
+//Admin Sell and Special
 Route::get('/{id?}/show/SS','AdminSell_SpecialController@ShowSell_Special'); //show sell id:0 ,special id:1
 Route::get('/{id?}/{req?}/detail','AdminSell_SpecialController@ShowSell_SpecialDetail');//detail sell0,sp1
 Route::get('/{id?}/{req?}/serve/SS','AdminSell_SpecialController@ServeSell_Special');//serve sell0special1

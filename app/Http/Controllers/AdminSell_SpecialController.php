@@ -64,44 +64,23 @@ class AdminSell_SpecialController extends Controller
         else
             abort(404);
         
-    }  
-    public function ServeSell_Special($id,$req,Request $request)
-    {
-        if(Auth::check()&&Auth::user()->role==2)
-            {
-            	if($id!=0 && $id!=1)
-                    abort(404);
-                if($id==0)
-	            	$affected=PublisherRequest::UpdateReq($req);
-	            else
-	            	$affected=SpecialOrder::UpdateReq($req);
-	            
-	            if($affected==0)
-	                {abort(404);}
-	            return redirect()->back();
-             }
-        else
-            abort(404);
     }
 
     protected function NewItem($id,$newprice)
     {
-        $sellRequest=PublisherRequest::where('id','=',$id)->first();
-        if($sellRequest==null)
+        $publisherRequest=PublisherRequest::where('id','=',$id)->first();
+        if($publisherRequest==null)
          {abort(404);}
          $newItem= Item::create(array(
-                        'name'=>$sellRequest->name,
-                        'width'=>$sellRequest->width,
-                        'length'=>$sellRequest->length,
-                        'height'=>$sellRequest->height,
-                        
-                        'artschool_id'=>$sellRequest->artschool_id,
-                        'seller_id'=>$sellRequest->seller_id,
+                        'name'=>$publisherRequest->name,
+                        'author'=>$publisherRequest->author,
+                        'category_id'=>$publisherRequest->category_id,
+                        'publisher_id'=>$publisherRequest->publisher_id,
                         'price'=>$newprice,
-                        'colortype_id'=>$sellRequest->colortype_id,
+                        'language_id'=>$publisherRequest->language_id,
                         ));
 
-         $images = $sellRequest->images;
+         $images = $publisherRequest->images;
          if($images!=null)
              foreach($images as $image)
                 {
@@ -160,34 +139,6 @@ class AdminSell_SpecialController extends Controller
             abort(404);
     } 
 
-    public function MsgInSell_Special($id,$req,Request $request)
-    {
-         if(Auth::check()&&Auth::user()->role==2)//customer
-        {
-            if($id!=0 && $id!=1)
-                abort(404);
-            if($id==0)
-            {
-                $reqReplies=SellReply::Get($req);
-
-                $Close=PublisherRequest::where('id','=',$req)
-                    ->select('closed')
-                    ->first();
-            }
-            else
-            {
-                $reqReplies=SpecialOrderReply1::Get($req);
-
-                $Close=SpecialOrder::where('id','=',$req)
-                    ->select('closed')
-                    ->first();
-            }
-        
-            return view('MsgDetail',['reqReplies'=>$reqReplies,'req'=>$req,'id'=>$id,'Close'=>$Close]); 
-        }
-        else 
-            abort(404);
-    } 
 
 ///////////special
     public function ArchiveSpecialOrder($id,Request $request)

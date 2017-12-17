@@ -11,9 +11,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
             @if($id==0)
-                <div class="panel-heading">Offer Item for Sale</div>
+                <div class="panel-heading">Publish a book</div>
             @elseif($id==1)
-                <div class="panel-heading">Special Order</div>
+                <div class="panel-heading">Order special book</div>
             @endif
                 <div class="panel-body">
                         
@@ -25,14 +25,11 @@
                         {!! csrf_field() !!}
                         
                             <div class="form-group{{ $errors->has('Item_Name') ? ' has-error' : '' }}">
-                            @if($id==0)
-                                <label class="col-md-4 control-label">Item Name</label>
-                            @else
-                                <label class="col-md-4 control-label">Order Name</label>
-                            @endif
+
+                                <label class="col-md-4 control-label">Book Name</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" maxlength="20" pattern="^[a-zA-Z0-9\s_]+$" title="An item name should contain letters, underscores, and numbers only."  class="form-control input-sm" name="Item_Name" value="{{ old('Item_Name') }}" placeholder="My_Item1">
+                                    <input type="text" maxlength="20" pattern="^[a-zA-Z0-9\s_]+$" title="An item name should contain letters, underscores, and numbers only."  class="form-control input-sm" name="Item_Name" value="{{ old('Item_Name') }}" placeholder="My_Book1">
 
                                     @if ($errors->has('Item_Name'))
                                         <span class="help-block">
@@ -42,50 +39,21 @@
                                 </div>
                             </div>
 
-                             <div class="form-group{{ $errors->has('Height') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Height in cm </label>
+                            <div class="form-group{{ $errors->has('Author_Name') ? ' has-error' : '' }}">
 
-                                <div class="col-md-3">
-                                    <input type="text" pattern="^[0-9]{1,5}(\.[0-9]{1,2})?$"  maxlength="8" title="A height should contain a number only (with maximum value 99999.99)" class="form-control input-sm" name="Height" value="{{ old('Height') }}" placeholder="00000.00">
+                                <label class="col-md-4 control-label">Author Name</label>
 
-                                    @if ($errors->has('Height'))
+                                <div class="col-md-6">
+                                    <input type="text" maxlength="20" pattern="^[a-zA-Z]+$" title="Author name should contain letters only."  class="form-control input-sm" name="Author_Name" value="{{ old('Author_Name') }}" placeholder="John">
+
+                                    @if ($errors->has('Author_Name'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('Height') }}</strong>
-                                        </span>
+                                                <strong>{{ $errors->first('Author_Name') }}</strong>
+                                            </span>
                                     @endif
-                            </div>
-                            </div>
-
-
-
-                            <div class="form-group{{ $errors->has('Length') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Length in cm </label>
-
-                                <div class="col-md-3">
-                                    <input type="text" pattern="^[0-9]{1,5}(\.[0-9]{1,2})?$"  maxlength="8" title="A length should contain a number only (with maximum value 99999.99)" class="form-control input-sm" name="Length" value="{{ old('Length') }}" placeholder="00000.00">
-
-
-                                    @if ($errors->has('Length'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('Length') }}</strong>
-                                        </span>
-                                    @endif
-                            </div>
+                                </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('Width') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Width in cm </label>
-
-                                <div class="col-md-3">
-                                    <input type="text" pattern="^[0-9]{1,5}(\.[0-9]{1,2})?$"  maxlength="8" title="A width should contain a number only (with maximum value 99999.99)" class="form-control input-sm" name="Width" value="{{ old('Width') }}" placeholder="00000.00">
-
-                                    @if ($errors->has('Width'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('Width') }}</strong>
-                                        </span>
-                                    @endif
-                            </div>
-                            </div>
 
                             <div class="form-group{{ $errors->has('Price') ? ' has-error' : '' }}">
                             @if($id==0)
@@ -105,44 +73,44 @@
                             </div>
 
 
-                            <div class="form-group{{ $errors->has('ArtSchools') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Art School</label>
+                            <div class="form-group{{ $errors->has('Categories') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Category</label>
 
                             <div class="col-md-6">
-                              <select class="form-control input-sm" name="ArtSchools">
-                              @foreach($artschools as $artschool)
-                                <option value= "<?php echo htmlspecialchars($artschool->id); ?>">{{$artschool->name}}</option>
+                              <select class="form-control input-sm" name="Categories">
+                              @foreach($categories as $category)
+                                <option value= "<?php echo htmlspecialchars($category->id); ?>">{{$category->name}}</option>
                               @endforeach
-                              @if(count($artschools)==0)
+                              @if(count($categories)==0)
                                 <option>There are no categories available.</option>
                               @endif
                               </select>
 
-                              @if ($errors->has('ArtSchools'))
+                              @if ($errors->has('Categories'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('ArtSchools') }}</strong>
+                                            <strong>{{ $errors->first('Categories') }}</strong>
                                         </span>
                               @endif
 
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('Colors') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Color Type</label>
+                        <div class="form-group{{ $errors->has('Languages') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Language</label>
 
                             <div class="col-md-6">
-                              <select class="form-control input-sm" name="Colors">
-                              @foreach($colors as $color)
-                                <option value= "<?php echo htmlspecialchars($color->id); ?>" >{{$color->name}}</option>
+                              <select class="form-control input-sm" name="Languages">
+                              @foreach($languages as $language)
+                                <option value= "<?php echo htmlspecialchars($language->id); ?>" >{{$language->name}}</option>
                               @endforeach
-                              @if(count($colors)==0)
-                                <option>There are no colors available.</option>
+                              @if(count($languages)==0)
+                                <option>There are no languages available.</option>
                               @endif
                               </select>
 
-                              @if ($errors->has('Colors'))
+                              @if ($errors->has('Languages'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('Colors') }}</strong>
+                                            <strong>{{ $errors->first('Languages') }}</strong>
                                         </span>
                               @endif
 
@@ -151,7 +119,7 @@
 
 
                         <div class="form-group{{ $errors->has('File') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Upload photo(s) -Up to 5 photos-</label>
+                            <label class="col-md-4 control-label">Upload photo(s) -Up to 2 photos-</label>
 
                             <div class="col-md-6">
                                 <input type="file" accept="image/*" class="form-control input-sm" name="images[]" multiple>
@@ -161,7 +129,7 @@
                                     </span>
                                 @elseif ($errors->has('File2'))
                                     <span class="help-block">
-                                        <strong class="text-danger">Maximum number of images allowed is 5</strong>
+                                        <strong class="text-danger">Maximum number of images allowed is 2</strong>
                                     </span>
                                 @elseif ($errors->has('File3'))
                                     <span class="help-block">
@@ -188,26 +156,7 @@
                                 @endif
                             </div>
                         </div>
-                            
-                        <div class="row">
-                            <label class="col-md-4 control-label">CAPTCHA Code</label>
-                            <div class="col-md-6">
-                                {!! captcha_image_html('LoginCaptcha') !!}
-                            </div>
-                        </div>
-                        <div class="row">&nbsp;</div>
-                        <div class="form-group{{ $errors->has('CaptchaCode') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label"></label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control input-sm" id="CaptchaCode" name="CaptchaCode" placeholder="What is the above CAPTCHA?">
 
-                                 @if ($errors->has('CaptchaCode'))
-                                    <span class="help-block">
-                                        <strong>Wrong code. Try again please.</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable(false);
             $table->string('phone',15)->unique()->nullable(false);
             $table->string('password')->unique()->nullable(false);
-            $table->tinyinteger('role')->nullable(false); //1 for customer, 2 for Admin, 3 for HR
+            $table->tinyinteger('role')->nullable(false); //1 for customer, 2 for Admin, 3 for HR  , 4 publisher
             $table->rememberToken();
             $table->timestamps();
         });

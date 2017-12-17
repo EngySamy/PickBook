@@ -28,6 +28,79 @@ class AdminHomeController extends Controller
         
     }
 
+    public function ViewAddPublisher(Request $request)
+    {
+        if(Auth::check()&&Auth::user()->role==2)
+            return view('AddPublisher');
+        else
+            abort(404);
+
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+    public function ValidatePublisher (Request $request)
+    {
+        $messages  = [
+            'MatchingUserPassword' => 'Wrong password. Try again please.',
+        ];
+
+        $rules = [
+            'First_Name' => 'required|max:20|alpha',
+            'Last_Name' => 'required|max:20|alpha',
+            'Email' => 'required|email|max:255|unique:users|confirmed',
+            'Password' => 'required|min:6|confirmed',
+        ];
+
+        $validator= Validator::make($request->all(),$rules,$messages);
+
+        return $validator;
+    }
+
+    protected function StorePublisher(array $data) //store publisher
+    {
+        $user = User::create([
+            'name' => $data['First_Name'].' '.$data['Last_Name'],
+            'email' => $data['Email'],
+            'password' => bcrypt($data['Password']),
+            'address'=>"a",
+            'phone'=>"0",
+        ]);
+
+        $insertedID = $user->id;
+        $user->username = strtolower($data['First_Name'][0]).strtolower($data['Last_Name'][0]).($insertedID*11).rand(100,999);
+
+
+        $user->role=4; //publisher
+        $user->save();
+
+        return $user;
+    }
+
+    public function AddPublisher(Request $request)
+    {
+        $data=$request->all();
+
+        //$FinishCode = 0;
+        if(Auth::check() && Auth::user()->role==2)
+        {
+            $validator=$this->ValidatePublisher($request);
+            if ($validator->fails())
+            {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            else {
+                $u = $this->StorePublisher($data);
+
+                return view('Done');
+            }
+
+        }
+        else
+        {return abort(404);}
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
     public function ShowCustomerInfo($customer,Request $request)
     {
          if(Auth::check()&&Auth::user()->role==2)

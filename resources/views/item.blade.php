@@ -50,7 +50,7 @@
                         </div>
                      </div>
                  </div>
-                        @if(Auth::user()->role==1)
+                        @if(Auth::user()->role==1 || Auth::user()->role==4)
                         <div class="form-group" style="padding-top: 30px; padding-bottom: 20px;">
                         
 
@@ -74,28 +74,24 @@
                                     <div class="modal-content">
                                       <div class="modal-header" style="text-align:center;" >
                                         <button type="button" class="close" data-dismiss="modal">×</button>
-                                        @if(!$item->sold)
+
                                         <h4 class="modal-title">Order " {{$item->name}} " Item</h4>
-                                        @else
-                                        <h4 class="modal-title">Special Order " {{$item->name}} " Item</h4>
-                                        @endif
+
                                       </div>
 
                                       <div class="modal-body" >
                                         <br>
-                                        @if(!$item->sold)
+
                                         <form action="/item/{{$item->id}}/BS" method="POST">
-                                        @else
-                                        <form action="/item/{{$item->id}}/BS" method="POST">
-                                        @endif
+
                                         <div class="form-group">
                                           <label class="col-md-4 control-label">Confirm Your Password</label>
 
                                           <div class="col-md-7">
                                               <input type="Password" class="form-control input-sm" name="Password" placeholder="Minimum is 6 characters" autocomplete="off">
                                           </div>
-                                      <br>
-                                      <br>
+                                        <br>
+                                        <br>
                                         
                                       </div>
                                       <div class="modal-footer">
@@ -175,12 +171,12 @@
                               </h4>
                           </li>
                           <li style="padding-top: 20px;">
-                              <h4><strong>Offered by </strong>
-                              <a href="/{{$item->Customer->id}}/profile" ><h5 class="text-muted" style="padding-left: 25px">{{$item->Customer->username}}</h5></a>
+                              <h4><strong>Publisher </strong>
+                                <h5 class="text-muted" style="padding-left: 25px">{{$item->publisher->name}}</h5>
                               </h4>
                           </li>
                           <li style="padding-top: 20px;">
-                             <h4> <strong>Offered Price </strong>
+                             <h4> <strong>Price </strong>
                               <h5 class="text-muted" style="padding-left: 25px">{{$item->price}} LE</h5>
                              </h4>
                           </li>
@@ -194,6 +190,7 @@
                                     <span class="glyphicon glyphicon-star-empty gold"></span>
                                 @endfor
                             </h5>
+                          </h4>
                         </ul>
                     </div>
                 </div>

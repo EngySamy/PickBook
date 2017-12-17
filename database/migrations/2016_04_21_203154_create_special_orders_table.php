@@ -16,9 +16,7 @@ class CreateSpecialOrdersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name',30)->unique()->nullable(false);
-            $table->double('width', 15, 8)->nullable(false);
-            $table->double('length', 15, 8)->nullable(false);
-            $table->double('height', 15, 8)->nullable(false);
+            $table->string('author',30)->nullable(false);
             $table->double('price', 15, 8)->nullable(false);
             $table->integer('language_id')->unsigned()->nullable(false);
             $table->integer('category_id')->unsigned()->nullable(false);

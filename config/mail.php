@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'support@djerba.com', 'name' => 'Djerba Support'],
+    'from' => ['address' => 'support@PickBook.com', 'name' => 'PickBook Support'],
 
     /*
     |--------------------------------------------------------------------------

@@ -32,13 +32,8 @@ class PublisherRequest extends Model
     }
  
 
-    public static function UpdateReq($req)
-    {
-        return DB::table('publisher_requests')->where('id','=',$req)->update(array('qs_id'=> Auth::user()->id));
-    }
-
     public static function Close($id)
     {
-        DB::table('sell_requests')->where('id','=',$id)->update(array('closed' => true));
+        DB::table('publisher_requests')->where('id','=',$id)->update(array('closed' => true));
     }
 }

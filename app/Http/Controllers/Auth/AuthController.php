@@ -43,14 +43,14 @@ class AuthController extends Controller
             return Redirect::back()->withMessage('Invalid credentials');
         }
 
-        if (Auth::user()->role == 1) 
+        if (Auth::user()->role == 1 || Auth::user()->role == 4)
         {
             return Redirect::to('/');
         }
 
         if (Auth::user()->role == 2) 
         {
-            return Redirect::to('/QShome');
+            return Redirect::to('/AdminHome');
         }
             
         if (Auth::user()->role == 3) 
@@ -79,9 +79,6 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        $messages  = [
-          'valid_captcha' => 'Wrong code. Try again please.'
-          ];
         return Validator::make($data, [
             'First_Name' => 'required|max:20|alpha',
             'Last_Name' => 'required|max:20|alpha',
@@ -89,8 +86,7 @@ class AuthController extends Controller
             'Password' => 'required|min:6|confirmed',
             'Address'=>'required|regex:/^[a-zA-Z0-9\s,]+$/',
             'Phone'=>'required|unique:users|numeric',
-            //'CaptchaCode'=>'required|valid_captcha'
-        ],$messages);
+        ]);
     }
 
     /**
@@ -111,7 +107,8 @@ class AuthController extends Controller
 
         $insertedID = $user->id;
         $user->username = strtolower($data['First_Name'][0]).strtolower($data['Last_Name'][0]).($insertedID*11).rand(100,999);
-        $user->role=2;
+        
+        $user->role=1;
         $user->save();
         return $user;
     }

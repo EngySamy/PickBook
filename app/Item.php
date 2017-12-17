@@ -20,7 +20,7 @@ class Item extends Model
         return $this->belongsTo('App\Language','language_id');
     }
 
-    public function Customer()
+    public function publisher()
     {
     	return $this->belongsTo('App\User','publisher_id');
     }

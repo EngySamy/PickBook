@@ -16,18 +16,18 @@ use App\PublisherRequestsImage;
 use App\SpecialOrder;
 use App\SpecialOrderImage;
 
-class OfferItemController extends Controller
+class NewItemController extends Controller
 {
     public function index($id,Request $request) //offer item
     {
         if($id==0 || $id==1)  //0 offer item ,1 special order
             {
-                if(Auth::check()&&Auth::user()->role==1)
+                if(Auth::check()&& (Auth::user()->role==1 || Auth::user()->role==4))
                 {
 
-                    $artschools = OfferItemController::showArtSchools();
-                    $colors = OfferItemController::showColorTypes();
-                    return view('OfferItem',['artschools'=>$artschools,'colors'=>$colors,'id'=>$id]);
+                    $categories = NewItemController::showCategories();
+                    $languages = NewItemController::showLanguages();
+                    return view('NewItem',['categories'=>$categories,'languages'=>$languages,'id'=>$id]);
                 }
                 else
                     {return Redirect::to('login')->with('message', 'Login/Register to use this feature.');}
@@ -44,44 +44,33 @@ class OfferItemController extends Controller
     	return view('ThankYou');
     }
 
-    protected function showArtSchools()
+    protected function showCategories()
     {
         return Category::orderBy('name')->get();        
     }
 
-    protected function showColorTypes()
+    protected function showLanguages()
     {
         return Language::orderBy('name')->get();
     }
 
     public function NewValidate ( Request $request) 
     {
-    	
-    
 		$messages  = [
           'valid_captcha' => 'Wrong code. Try again please.',
           'MatchingUserPassword' => 'Wrong password. Try again please.',
           ];
 
         $rules = [
-            'Item_Name' => 'required|unique:sell_requests,name|max:20|regex:/^[a-zA-Z0-9\s_]+$/',
-            'Height' => 'required|numeric|digits_between:1,8',
-            'Length' => 'required|numeric|digits_between:1,8',
-            'Width' => 'required|numeric|digits_between:1,8',
+            'Item_Name' => 'required|max:20|regex:/^[a-zA-Z0-9\s_]+$/',
+            'Author_Name' => 'required|max:20|regex:/^[a-zA-Z]+$/',
             'Price' => 'required|numeric|digits_between:1,6',
-            'ArtSchools' =>'required',
-            'Colors' => 'required',
+            'Categories' =>'required',
+            'Languages' => 'required',
            //'File' => 'required',
          //   'File.*' => 'mimes:jpeg,jpg,bmp,png',
             'Password' =>'required|MatchingUserPassword',
-            'CaptchaCode'=>'required|valid_captcha'
              ];
-
-      /*      $nbr = count($request->file('File')) - 1;
-            foreach(range(0, $nbr) as $index) {
-                $rules['File.' . $index] = 'required|image|max:4000';
-            }*/
-
 
 		$validator= Validator::make($request->all(),$rules,$messages); 
 
@@ -97,22 +86,20 @@ class OfferItemController extends Controller
         if($ReturnCode != 1)
             return $ReturnCode;
 
-    	$sell_request=PublisherRequest::create([
-    		'name' => $data['Item_Name'],
-    		'width' => $data['Width'],
-    		'length' => $data['Length'],
-    		'height' => $data['Height'],
-    		'price' => $data['Price'],
-    		'colortype_id' => $data['Colors'],
-    		'artschool_id' => $data['ArtSchools'],
-    		'seller_id' => Auth::user()->id
+    	$publisher_request=PublisherRequest::create([
+            'name' => $data['Item_Name'],
+            'author' => $data['Author_Name'],
+            'price' => $data['Price'],
+    		'language_id' => $data['Languages'],
+    		'category_id' => $data['Categories'],
+    		'publisher_id' => Auth::user()->id
     		]);
 
         //for each img // to be modified
 
-    	$sell_request->save();
+    	$publisher_request->save();
 
-        $request_id = $sell_request->id;
+        $request_id = $publisher_request->id;
 
         foreach($array as $x)
         {
@@ -136,12 +123,10 @@ class OfferItemController extends Controller
 
         $special_order=SpecialOrder::create([
             'name' => $data['Item_Name'],
-            'width' => $data['Width'],
-            'length' => $data['Length'],
-            'height' => $data['Height'],
+            'author' => $data['Author_Name'],
             'price' => $data['Price'],
-            'colortype_id' => $data['Colors'],
-            'artschool_id' => $data['ArtSchools'],
+            'language_id' => $data['Languages'],
+            'category_id' => $data['Categories'],
             'requester_id' => Auth::user()->id
             ]);
 
@@ -167,7 +152,7 @@ class OfferItemController extends Controller
     public function Submit($id,Request $request) //offer item 0 , special order 1
     {
         $error0 = 'Could not upload your images.';
-        $error1 = 'Maximum number of images allowed is 5';
+        $error1 = 'Maximum number of images allowed is 2';
         $error2 = 'Maximum image size is 4 MB';
         $error3 = 'Unsupported File Extension.';
         if($id!=0 && $id!=1)

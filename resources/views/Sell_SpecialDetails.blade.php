@@ -61,26 +61,21 @@
                   </div>  
                 </div>            
                         
-                   @if($Request->qs_id==NULL)
-                        <div  style="margin: 0 auto; text-align: center;">
-                          <form action="/{{$id}}/{{$Request->id}}/serve/SS">
-                          <button class="btn btn-primary btn-lg" style="display: inline-block;">Serve</button>
-                          </form>
-                        </div>
-                    @elseif($Request->qs_id==$qs) <!--if the logged in user is the assigned QS-->
-                        <div  style="margin: 0 auto; text-align: center;">
-                          <div class="btn-group" style="position: relative;">
-                          <a href="/{{$id}}/{{$Request->id}}/messages/SS" class="btn btn-primary" title="Send Message to the customer">Send Message</a>
-                          @if($id==0)
-                            <a href="#" class="btn btn-primary" id="accept">Accept</a>
-                            <a href="#" id="refuse" class="btn btn-primary">Refuse</a>
-                          @else
-                            <a href="#" id="refuse" class="btn btn-primary">Archive</a>
-                           @endif 
 
-                          </div>
-                        </div>
-                    @endif 
+
+                    <div  style="margin: 0 auto; text-align: center;">
+                      <div class="btn-group" style="position: relative;">
+
+                      @if($id==0)
+                        <a href="#" class="btn btn-primary" id="accept">Accept</a>
+                        <a href="#" id="refuse" class="btn btn-primary">Refuse</a>
+                      @else
+                        <a href="#" id="refuse" class="btn btn-primary">Archive</a>
+                       @endif
+
+                      </div>
+                    </div>
+
                 
             </div>
                 
@@ -93,7 +88,7 @@
                          
                             <h4>
                             @if($id==0)
-                            <strong>Sell Request No. </strong>
+                            <strong>Publish Request No. </strong>
                             @else
                             <strong>Special Order No. </strong>
                             @endif
@@ -102,9 +97,9 @@
                             </h4>
 
                           <li style="padding-top: 20px;">
-                            <h4><strong>Art Category </strong>
-                            @if($Request->artSchool!=null)
-                            <h5 class="text-muted" style="padding-left: 25px">{{$Request->artSchool->name}}</h5>
+                            <h4><strong>Category </strong>
+                            @if($Request->category!=null)
+                            <h5 class="text-muted" style="padding-left: 25px">{{$Request->category->name}}</h5>
                             @else
                             <h5 class="text-muted" style="padding-left: 25px">None</h5>
                             @endif
@@ -112,39 +107,28 @@
                             
                           </li>
                           <li style="padding-top: 20px;">
-                            <h4> <strong>Type of colors </strong>
-                            @if($Request->colorType!=null)
-                            <h5 class="text-muted" style="padding-left: 25px">{{$Request->colorType->name}}</h5>
+                            <h4> <strong>Language </strong>
+                            @if($Request->language!=null)
+                            <h5 class="text-muted" style="padding-left: 25px">{{$Request->language->name}}</h5>
                             @else
                             <h5 class="text-muted" style="padding-left: 25px">None</h5>
                             @endif
                             </h4>     
                           </li>
                           <li style="padding-top: 20px;">
-                              <h4><strong>Dimensions </strong>
-                              <h5 class="text-muted" style="padding-left: 25px">Length: {{$Request->length}} cm</h5>
-                              <h5 class="text-muted" style="padding-left: 25px">Width: {{$Request->width}} cm</h5>
-                              <h5 class="text-muted" style="padding-left: 25px">Height: {{$Request->height}} cm</h5>
+                              <h4><strong>Author </strong>
+                              <h5 class="text-muted" style="padding-left: 25px"> {{$Request->author}} </h5>
+
                               </h4>
                           </li>
                           <li style="padding-top: 20px;">
-                              <h4><strong>Offered by </strong>
-                              <h5 class="text-muted" style="padding-left: 25px">{{$Request->Customer->username}}</h5>
+                              <h4><strong>Publisher </strong>
+                              <h5 class="text-muted" style="padding-left: 25px">{{$Request->Customer->name}}</h5>
                               </h4>
                           </li>
                           <li style="padding-top: 20px;">
                              <h4> <strong>Offered Price </strong>
                               <h5 class="text-muted" style="padding-left: 25px">{{$Request->price}} LE</h5>
-                             </h4>
-                          </li>
-                          <li style="padding-top: 20px;">
-                             <h4> <strong>Assigned QS </strong>
-                             @if(is_null($Request->qsusername))
-                              <h5 class="text-muted" style="padding-left: 25px">None</h5>
-                              @else
-                              <h5 class="text-muted" style="padding-left: 25px">{{$Request->qsusername}}</h5>
-                              @endif
-              
                              </h4>
                           </li>
                          

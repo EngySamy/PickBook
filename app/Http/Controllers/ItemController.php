@@ -114,7 +114,7 @@ class ItemController extends Controller
 
     public function Buy($item, Request $request) // id to choose between buy request and similar special order
     {
-        if(Auth::check()&&Auth::user()->role==1)
+        if(Auth::check()&&(Auth::user()->role==1||Auth::user()->role==4))
         {
             $rules = [
                 'Password' =>'required|MatchingUserPassword',
