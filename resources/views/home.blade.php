@@ -46,7 +46,7 @@
             <div class="col-md-9">
                 <div class="row">
                 <div class="col-md-12">
-                    <span class="lead">Featured</span>
+                    <span class="lead">Most Popular</span>
                     @if($remove==true)
 
                         <div class="panel panel-default" style="margin-top: 16px">
@@ -92,12 +92,13 @@
                         <div class="thumbnail">
                             @foreach($item->images as $index=>$image)
                                 @if($index==0)
-                                     <img class="img-responsive center-block slide-image" src="{{url($image->link)}}" style="width:auto; height:141px" alt=""/>
+                                     <img class="img-responsive center-block slide-image" src="{{url($image->link)}}" style="width:50%; float:left" alt=""/>
                                 @endif
                             @endforeach
-                            <div class="caption">
-                                <h4 class="pull-right">{{$item->price}} LE</h4>
+                            <div class="caption" style="width:50%;float:right">
+
                                 <h4><a href="/{{$item->id}}/item">{{$item->name}}</a></h4>
+                                <h5>{{$item->price}} LE</h5>
                                 @if($item->category!=null)
                                      <p>Category: {{$item->category->name}}</p>
                                 @else
@@ -116,6 +117,7 @@
                                     <span class="glyphicon glyphicon-star-empty gold"></span>
                                 @endfor
                             </div>
+                                <br style="clear:both;"/>
                         </div>
                     </div>
                     </a>

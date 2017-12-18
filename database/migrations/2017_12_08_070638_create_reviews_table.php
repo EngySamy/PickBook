@@ -14,6 +14,7 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->engine = 'InnoDB';
+            $table->increments('id');
             $table->integer('item_id')->unsigned()->nullable(false);
             $table->integer('user_id')->unsigned()->nullable(false);
             $table->text('value');

@@ -144,7 +144,7 @@ class ItemController extends Controller
         else 
             abort(404);
     }
-    public function review(Item $id,Request $request)
+    public function review($id,Request $request)
     {
         if(Auth::check())
         {

@@ -225,12 +225,16 @@
                 <h4><strong>Reviews</strong></h4>
 
 
-                    @foreach($reviews as $review)
+
+                    @foreach($reviews as $e)
+
                         <div class="caption-full description well">
-                            {{$review->value}}
+
+                            no
 
                         </div>
                     @endforeach
+
             </div>
                     
 

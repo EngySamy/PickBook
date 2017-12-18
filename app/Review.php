@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    protected $table = 'rating';
+    protected $table = 'reviews';
 
     protected $fillable = ['user_id','item_id','value'];
 
@@ -20,7 +20,7 @@ class Review extends Model
     }
     
     public static  function getItemReviews($item){
-        $reviews=Review::where('item_id','=',$item);
+        $reviews=Review::where('item_id',$item);//Review::where('item_id','=',$item);
         return $reviews;
     }
 
