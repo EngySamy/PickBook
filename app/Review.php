@@ -20,7 +20,7 @@ class Review extends Model
     }
     
     public static  function getItemReviews($item){
-        $reviews=Review::where('item_id',$item);//Review::where('item_id','=',$item);
+        $reviews=Review::where('item_id','=',$item)->get();//Review::where('item_id','=',$item);
         return $reviews;
     }
 

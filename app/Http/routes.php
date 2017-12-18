@@ -22,16 +22,15 @@ Route::get('/home/category/{id?}','HomeController@showAllinCategory');
 Route::get('/home/language/{id?}','HomeController@showAllinLanguage');
 Route::get('/aboutus', 'AboutusController@index');
 Route::get('/contactus', 'ContactusController@index');
- 
 Route::post('/contactus/submit1', 'ContactusController@submitcomplaint');
 Route::post('/contactus/submit2', 'ContactusController@submitsuggestion');
+
 Route::get('/HRPanel/viewcomplaints', 'HRController@viewcomplaints');
 Route::get('/HRPanel/viewsuggestions', 'HRController@viewsuggestions');
 Route::get('/HRPanel', 'HRController@index');
+
 Route::get('/item/{id?}', 'ItemController@show');		// '?' means sending the id to the controller!
-
 Route::get('/{id?}/item', 'ItemController@show');		// '?' means sending the id to the controller!
-
 Route::get('/search/{keyword?}', 'searchcontroller@search'); //searchcontroller 
 Route::post('/item/{id}/rate','ItemController@rate');			//rate an item
 Route::post('/item/{item?}/BS','ItemController@Buy'); //  order

@@ -126,7 +126,7 @@
                  </div>
                         @if(Auth::user()->role==1 || Auth::user()->role==4 || Auth::user()->role==2)
                         <div class="form-group" style="padding-top: 30px; padding-bottom: 20px;">
-                              <h2 class="text-warning" style=" padding-bottom: 10px; text-align: center">AVAILABLE</h2>
+
                               <div class="span12" style="text-align: center">
                                 
 
@@ -222,18 +222,20 @@
 
                 </div>
                 <!----- Reviews-------->
+                @if(count($reviews)>0)
                 <h4><strong>Reviews</strong></h4>
+                @endif
 
+                @foreach($reviews as $e)
 
+                    <div class="well">
 
-                    @foreach($reviews as $e)
+                        User:{{$e->user_id}}
+                        <br>
+                        <p style="color: #6D6D6D">{{$e->value}}</p>
 
-                        <div class="caption-full description well">
-
-                            no
-
-                        </div>
-                    @endforeach
+                    </div>
+                @endforeach
 
             </div>
                     

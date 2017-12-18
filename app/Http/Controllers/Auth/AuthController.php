@@ -50,7 +50,7 @@ class AuthController extends Controller
 
         if (Auth::user()->role == 2) 
         {
-            return Redirect::to('/AdminHome');
+            return Redirect::to('/0/show/SS');
         }
             
         if (Auth::user()->role == 3) 
