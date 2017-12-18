@@ -36,6 +36,14 @@
      
             </div>
 
+          <p class="lead">Other</p>
+          <div class="list-group">
+              <a href="/Admin/AddPublisher" class="list-group-item {{ Request::is('Admin/AddPublisher') ? 'active' : '' }}" style="height: 40px;">Add Publisher</a>
+              <a href="/home/toremovebook" class="list-group-item {{ Request::is('home/toremovebook') ? 'active' : '' }}" style="height: 40px;">Remove Book</a>
+              <a href="/toremoveuser" class="list-group-item {{ Request::is('toremoveuser') ? 'active' : '' }}" style="height: 40px;">Remove User</a>
+
+          </div>
+
       </div>
 
       @yield('addrequests')

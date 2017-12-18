@@ -54,8 +54,15 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li @yield('HomeisActive')><a href="{{ url('/home') }}">{{htmlentities('Books')}}</a></li>
+                    <li @yield('ContactusisActive')><a href="{{ url('/contactus') }}">Feedback</a></li>
                     <li @yield('AboutusisActive')><a href="{{ url('/aboutus') }}">About US</a></li>
-                    <li @yield('ContactusisActive')><a href="{{ url('/contactus') }}">Contact US</a></li>
+                </ul>
+                <ul class="nav navbar-nav" style="width: 50%">
+                    <li>
+                        <form id="tfnewsearch" method="get" action="/search">
+                            <input type="text" id="tfq" class="tftextinput2" name="keyword" size="18" maxlength="120" placeholder="Search.."><input type="submit" value="Go" class="tfbutton2">
+                        </form>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -76,7 +83,7 @@
                                 @endif
 
                                 @if(Auth::user()->role==2)
-                                <li><a href="{{ url('/AdminHome') }}" style="font-size: 14px;"><i class="fa fa-btn fa-bars"></i>Admin panel</a></li>
+                                <li><a href="{{ url('/0/show/SS') }}" style="font-size: 14px;"><i class="fa fa-btn fa-bars"></i>Admin panel</a></li>
                                 @endif
                                 @if(Auth::user()->role==3)
                                 <li><a href="{{ url('/HRPanel') }}" style="font-size: 14px;"><i class="fa fa-btn fa-bars"></i>HR panel</a></li>
@@ -87,11 +94,7 @@
                         </li>
 
                     @endif
-                    <li>
-                         <form id="tfnewsearch" method="get" action="/search">
-                               <input type="text" id="tfq" class="tftextinput2" name="keyword" size="18" maxlength="120" placeholder="Search.."><input type="submit" value="Go" class="tfbutton2">
-                         </form>
-                    </li>
+
 
                 </ul>
             </div>

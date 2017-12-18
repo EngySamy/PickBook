@@ -14,27 +14,27 @@ use App\Item;
 class searchcontroller extends Controller
 {
     public function search()
-{
-   $keyword=\Request::get('keyword');
-   $keyword=trim($keyword);
-   $items= item::where('name','like','%'.$keyword.'%')
-   ->orderby ('name')
-   ->paginate(5);
-    $artschools = searchcontroller::showArtSchools();
-        $colors = searchcontroller::showColorTypes();
-        
-    return view('home',['artschools'=>$artschools,'colors'=>$colors,'items'=>$items]);
+    {
+       $keyword=\Request::get('keyword');
+       $keyword=trim($keyword);
+       $items= item::where('name','like','%'.$keyword.'%')
+       ->orderby ('name')
+       ->paginate(5);
+        $categories = searchcontroller::showCategories();
+            $languages = searchcontroller::showLanguages();
+
+        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items , 'remove'=>false]);
 
    	}
-   	public function showArtSchools()
+   	public function showCategories()
     {
         return Category::orderBy('name')->get();        //Sort ascendingly
     }
 
-    public function showColorTypes()
+    public function showLanguages()
     {
         return Language::orderBy('name')->get();
     }
 
 
-     }	
+}

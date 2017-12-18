@@ -16,6 +16,66 @@
 
         <div class="row">
 
+
+            <div class="col-md-5">
+
+                <div class="caption-full description well">
+                    <h4 class="text-center"><a href="#">{{$item->name}}</a></h4>
+                    <ul>
+                        <li style="padding-top: 20px;">
+                            <h4><strong>Book No. </strong>
+                                <h5 class="text-muted" style="padding-left: 25px">{{$item->id}}</h5>
+                            </h4>
+
+                        <li style="padding-top: 20px;">
+                            <h4><strong>Category </strong>
+                                @if($item->category!=null)
+                                    <h5 class="text-muted" style="padding-left: 25px">{{$item->category->name}}</h5>
+                                @else
+                                    <h5 class="text-muted" style="padding-left: 25px">None</h5>
+                                @endif
+                            </h4>
+
+                        </li>
+                        <li style="padding-top: 20px;">
+                            <h4> <strong>Language </strong>
+                                @if($item->language!=null)
+                                    <h5 class="text-muted" style="padding-left: 25px">{{$item->language->name}}</h5>
+                                @else
+                                    <h5 class="text-muted" style="padding-left: 25px">None</h5>
+                                @endif
+                            </h4>
+                        </li>
+                        <li style="padding-top: 20px;">
+                            <h4><strong>Author </strong>
+                                <h5 class="text-muted" style="padding-left: 25px">{{$item->author}} </h5>
+                            </h4>
+                        </li>
+                        <li style="padding-top: 20px;">
+                            <h4><strong>Publisher </strong>
+                                <h5 class="text-muted" style="padding-left: 25px">{{$item->publisher->name}}</h5>
+                            </h4>
+                        </li>
+                        <li style="padding-top: 20px;">
+                            <h4> <strong>Price </strong>
+                                <h5 class="text-muted" style="padding-left: 25px">{{$item->price}} LE</h5>
+                            </h4>
+                        </li>
+                        <li style="padding-top: 20px;">
+                            <h4><strong>Average Rating </strong>
+                                <h5 style="padding-left: 25px">
+                                    @for($i=0;$i<$avg_rate&&$i<5;$i++)
+                                        <span class="glyphicon glyphicon-star gold"></span>
+                                    @endfor
+                                    @for($i=0;$i<5-$avg_rate;$i++)
+                                        <span class="glyphicon glyphicon-star-empty gold"></span>
+                                    @endfor
+                                </h5>
+                            </h4>
+                    </ul>
+                </div>
+            </div>
+
             <div class="col-md-7">
                 @if(Session::has('message'))
                         <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
@@ -52,8 +112,6 @@
                  </div>
                         @if(Auth::user()->role==1 || Auth::user()->role==4 || Auth::user()->role==2)
                         <div class="form-group" style="padding-top: 30px; padding-bottom: 20px;">
-                        
-
                               <h2 class="text-warning" style=" padding-bottom: 10px; text-align: center">AVAILABLE</h2>
                               <div class="span12" style="text-align: center">
                                 
@@ -143,67 +201,20 @@
                         @elseif(Auth::user()->role==2||Auth::user()->role==3)
                             <h2 class="text-warning" style=" padding-bottom: 10px; text-align: center">AVAILABLE</h2>
                         @endif
-                    </div>
-                    </div>
-                    
-             <div class="col-md-5">
 
-                   <div class="caption-full description well">
-                        <h4 class="text-center"><a href="#">{{$item->name}}</a></h4>
-                        <ul>
-                          <li style="padding-top: 20px;">
-                            <h4><strong>Book No. </strong>
-                            <h5 class="text-muted" style="padding-left: 25px">{{$item->id}}</h5>
-                            </h4>
 
-                          <li style="padding-top: 20px;">
-                            <h4><strong>Category </strong>
-                            @if($item->category!=null)
-                            <h5 class="text-muted" style="padding-left: 25px">{{$item->category->name}}</h5>
-                            @else
-                            <h5 class="text-muted" style="padding-left: 25px">None</h5>
-                            @endif
-                            </h4>
-                            
-                          </li>
-                          <li style="padding-top: 20px;">
-                            <h4> <strong>Language </strong>
-                            @if($item->language!=null)
-                            <h5 class="text-muted" style="padding-left: 25px">{{$item->language->name}}</h5>
-                            @else
-                            <h5 class="text-muted" style="padding-left: 25px">None</h5>
-                            @endif
-                            </h4>     
-                          </li>
-                          <li style="padding-top: 20px;">
-                              <h4><strong>Author </strong>
-                              <h5 class="text-muted" style="padding-left: 25px">{{$item->author}} </h5>
-                              </h4>
-                          </li>
-                          <li style="padding-top: 20px;">
-                              <h4><strong>Publisher </strong>
-                                <h5 class="text-muted" style="padding-left: 25px">{{$item->publisher->name}}</h5>
-                              </h4>
-                          </li>
-                          <li style="padding-top: 20px;">
-                             <h4> <strong>Price </strong>
-                              <h5 class="text-muted" style="padding-left: 25px">{{$item->price}} LE</h5>
-                             </h4>
-                          </li>
-                          <li style="padding-top: 20px;"> 
-                          <h4><strong>Average Rating </strong>
-                            <h5 style="padding-left: 25px">
-                                @for($i=0;$i<$avg_rate&&$i<5;$i++)
-                                    <span class="glyphicon glyphicon-star gold"></span>
-                                @endfor
-                                @for($i=0;$i<5-$avg_rate;$i++)
-                                    <span class="glyphicon glyphicon-star-empty gold"></span>
-                                @endfor
-                            </h5>
-                          </h4>
-                        </ul>
-                    </div>
+
+
+
                 </div>
+                <!----- Reviews-------->
+                <div class="caption-full description well">
+                    <h4><strong>Reviews</strong></h4>
+
+                </div>
+            </div>
+                    
+
         </div>
     </div>
 

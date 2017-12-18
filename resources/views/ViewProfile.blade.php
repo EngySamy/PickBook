@@ -49,8 +49,6 @@
                     <label class="col-md-6 label2">{{$user->address}}</label>
                     <div class="row">&nbsp;</div>
 
-                    <label class="col-md-5 label1">My Items</label>
-                    <a href="/{{$user->id}}/profile/" style="font-size: 15px; line-height:2.3;" class="col-md-6 " >Show All Items</a>
                     
                     <div class="row">&nbsp;</div>
 

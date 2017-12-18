@@ -71,7 +71,7 @@ class HomeController extends Controller
         $items = Item::where('category_id','=',$id)->paginate(10);
         $categories = HomeController::showCategories();
         $languages = HomeController::showLanguages();
-        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items]);
+        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items,'remove'=>false]);
     }
 
     public function showAllinLanguage($id, Request $request)
@@ -79,7 +79,7 @@ class HomeController extends Controller
         $items = Item::where('language_id','=',$id)->paginate(10);
         $categories = HomeController::showCategories();
         $languages = HomeController::showLanguages();
-        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items]);
+        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items,'remove'=>false]);
     }
 
     

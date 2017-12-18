@@ -18,8 +18,8 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/home/artschool/{id?}','HomeController@showAllinCategory');
-Route::get('/home/color/{id?}','HomeController@showAllinLanguage');
+Route::get('/home/category/{id?}','HomeController@showAllinCategory');
+Route::get('/home/language/{id?}','HomeController@showAllinLanguage');
 Route::get('/aboutus', 'AboutusController@index');
 Route::get('/contactus', 'ContactusController@index');
  
@@ -48,7 +48,7 @@ Route::get('/editprofile', 'UserProfileController@Edit');
 Route::post('/editprofile/submit','UserProfileController@SubmitEdit');
 Route::post('/myprofile/changepassword','UserProfileController@ChangePassword');
 
-Route::get('/{id?}/profile','ProfileItemsController@index');
+//Route::get('/{id?}/profile','ProfileItemsController@index');
 
 
 //Admin Home

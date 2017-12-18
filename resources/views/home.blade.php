@@ -18,13 +18,13 @@
 
 
 
-            <div class="col-md-3">
+            <div class="col-md-3" >
                 <span class="lead">Categories</span>
                 <div class="list-group" style="padding-top: 20px">
 
                     @foreach($categories as $category)
-                    <a href="/home/artschool/{{$category->id}}"
-                    class="list-group-item {{ Request::is('home/artschool/'.$category->id) ? 'active' : '' }}"style="height: 40px;">{{$category->name}}</a>
+                    <a href="/home/category/{{$category->id}}"
+                    class="list-group-item {{ Request::is('home/category/'.$category->id) ? 'active' : '' }}"style="height: 40px;">{{$category->name}}</a>
 
                     @endforeach
                     @if(count($categories)==0)
@@ -34,7 +34,7 @@
                 <span class="lead">Language</span>
                 <div class="list-group" style="padding-top: 20px">
                     @foreach($languages as $language)
-                    <a href="/home/color/{{$language->id}}" class="list-group-item {{ Request::is('home/color/'.$language->id) ? 'active' : '' }}" style="height: 40px;">{{$language->name}}</a>
+                    <a href="/home/language/{{$language->id}}" class="list-group-item {{ Request::is('home/language/'.$language->id) ? 'active' : '' }}" style="height: 40px;">{{$language->name}}</a>
                     @endforeach
                     @if(count($languages)==0)
                         <p>There are no languages available.</p>
@@ -141,10 +141,10 @@
 </div>
     <style>
         .tooltip {
-            background-color: white;
+            background-language: white;
             font-size:12px;
             font-family: Arial;
-            color:#fff;
+            language:#fff;
         }
 </style>
 
