@@ -50,7 +50,7 @@
                         </div>
                      </div>
                  </div>
-                        @if(Auth::user()->role==1 || Auth::user()->role==4)
+                        @if(Auth::user()->role==1 || Auth::user()->role==4 || Auth::user()->role==2)
                         <div class="form-group" style="padding-top: 30px; padding-bottom: 20px;">
                         
 
@@ -60,7 +60,10 @@
 
                                 <!-- For Buy Request -->
                                 <button type="button" class="btn btn-primary" id="order">
-                                  <span class="glyphicon glyphicon-shopping-cart" style="padding-right: 10px;"></span>Order this Book
+
+                                    @if(Auth::user()->role==2) <i class="fa fa-times fa-btn"></i> Remove Book
+                                    @else <span class="glyphicon glyphicon-shopping-cart" style="padding-right: 10px;"></span> Order this Book
+                                    @endif
                                 </button>
                               </div> <!-- //////////////////////////////////////// -->
 
@@ -75,14 +78,21 @@
                                       <div class="modal-header" style="text-align:center;" >
                                         <button type="button" class="close" data-dismiss="modal">×</button>
 
-                                        <h4 class="modal-title">Order " {{$item->name}} " Item</h4>
+                                        <h4 class="modal-title">
+                                            @if(Auth::user()->role==2) Remove
+                                            @else Order
+                                            @endif
+                                            "{{$item->name}}" Book</h4>
 
                                       </div>
 
                                       <div class="modal-body" >
                                         <br>
-
+                                        @if(Auth::user()->role==2)
+                                        <form action="/item/{{$item->id}}/remove" method="POST">
+                                        @else
                                         <form action="/item/{{$item->id}}/BS" method="POST">
+                                        @endif
 
                                         <div class="form-group">
                                           <label class="col-md-4 control-label">Confirm Your Password</label>

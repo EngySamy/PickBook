@@ -25,7 +25,7 @@
 
 	<style>
         body {
-            font-family: 'Lato';
+            font-family: 'Acme';
         }
 
         .fa-btn {
@@ -108,7 +108,7 @@
 
     <footer class="navbar-inverse navbar-fixed-bottom">
           <div class="container-fluid">
-            <p class="text-center" style="color:#FFFFFF; font-size:12px;">&copy2016 Delta Systems. All rights reserved.</p>
+
           </div>
     </footer>
 

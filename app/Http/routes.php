@@ -57,6 +57,8 @@ Route::get('/{customer?}/customer','AdminHomeController@ShowCustomerInfo');
 
 Route::get('/Admin/AddPublisher','AdminHomeController@ViewAddPublisher');
 Route::post('/Admin/AddPublisher/Add','AdminHomeController@AddPublisher');
+//Admin Remove book
+Route::post('/item/{item?}/remove','AdminHomeController@RemoveBook');
 
 //Admin Sell and Special
 Route::get('/{id?}/show/SS','AdminSell_SpecialController@ShowSell_Special'); //show sell id:0 ,special id:1

@@ -101,21 +101,31 @@ class AdminHomeController extends Controller
 
     ////////////////////////////////////////////////////////////////////////////////////////////
 
-    public function ShowCustomerInfo($customer,Request $request)
+    public function ShowCustomerInfo($customer,Request $request) //???where is it?
     {
          if(Auth::check()&&Auth::user()->role==2)
             {
                 $user=User::where('id','=',$customer)->first();
                 if($user==null)
-                    {
-                        abort(404);
-                    }
+                    abort(404);
                 return view('UserProfile',['user'=>$user]);
             }
         else
             abort(404);
-    } 
+    }
+    ///////////////////////////
 
 
+    public function RemoveBook($item,Request $request){
+        if(Auth::check()&&Auth::user()->role==2)
+        {
+            //$item=Item::where('id','=',$item)->first();
+            Item::destroy($item);
+
+            return view('Done');
+        }
+        else
+            abort(404);
+    }
 
 }
