@@ -26,37 +26,41 @@
   <div class="row">
   <div class="col-md-6 text-center ">
     <form action="/0/show/SS">
-        <button class="btn btn-primary btn-xlarge" data-toggle="tooltip" data-placement="left" ><i class="fa fa-book fa-btn"></i>Publisher Requests</button>
+        <button class="btn btn-primary btn-xlarge"  ><i class="fa fa-book fa-btn"></i>Publisher Requests</button>
     </form>
   
     <form action="/show/BS">
-        <button class="btn btn-primary btn-xlarge" data-toggle="tooltip" data-placement="left" ><i class="fa fa-shopping-basket fa-btn"></i>Buy Requests</button>
+        <button class="btn btn-primary btn-xlarge"  ><i class="fa fa-shopping-basket fa-btn"></i>Buy Requests</button>
     </form>
 
     <form action="/1/show/SS">
-        <button class="btn btn-primary btn-xlarge" data-toggle="tooltip" data-placement="left" ><i class="fa fa-cart-plus fa-btn"></i>Special Orders</button>
+        <button class="btn btn-primary btn-xlarge"  ><i class="fa fa-cart-plus fa-btn"></i>Special Orders</button>
     </form>
   </div>
 
- <div class="col-md-6 text-center">
+  <div class="col-md-6 text-center">
 
-     <form action="/Admin/AddPublisher">
-         <button class="btn btn-primary btn-xlarge" data-toggle="tooltip" data-placement="left" ><i class="fa fa-plus-circle fa-btn"></i>Add Publisher</button>
-     </form>
+         <form action="/Admin/AddPublisher">
+             <button class="btn btn-primary btn-xlarge" ><i class="fa fa-plus-circle fa-btn"></i>Add Publisher</button>
+         </form>
 
-     <form action="/">
-         <button class="btn btn-primary btn-xlarge" data-toggle="tooltip" data-placement="left" ><i class="fa fa-times fa-btn"></i>Remove Customer</button>
-     </form>
 
-     <form action="/">
-         <button class="btn btn-primary btn-xlarge" data-toggle="tooltip" data-placement="left" ><i class="fa fa-trash fa-btn"></i>Remove Book</button>
-     </form>
+         <form action="/home/toremovebook">
+             <button class="btn btn-primary btn-xlarge"  ><i class="fa fa-trash fa-btn"></i>Remove Book</button>
+         </form>
+
+      <form action="/toremoveuser">
+        <button id="order" class="btn btn-primary btn-xlarge"  ><i class="fa fa-times fa-btn"></i>Remove Customer</button>
+      </form>
+
+
+  </div>
 
   </div>
 
   </div>
 
-  </div>
+
 </body>
 
 

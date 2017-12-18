@@ -61,7 +61,7 @@
                                 <!-- For Buy Request -->
                                 <button type="button" class="btn btn-primary" id="order">
 
-                                    @if(Auth::user()->role==2) <i class="fa fa-times fa-btn"></i> Remove Book
+                                    @if(Auth::user()->role==2) <i class="fa fa-trash fa-btn"></i> Remove Book
                                     @else <span class="glyphicon glyphicon-shopping-cart" style="padding-right: 10px;"></span> Order this Book
                                     @endif
                                 </button>

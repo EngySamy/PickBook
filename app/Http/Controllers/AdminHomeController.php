@@ -128,4 +128,51 @@ class AdminHomeController extends Controller
             abort(404);
     }
 
+    ////////////////////////////////////////////////
+    public function GoToRemoveUser(Request $request){
+        if(Auth::check()&&Auth::user()->role==2)
+        {
+            return view('removeUser');
+        }
+        else
+            abort(404);
+    }
+
+    public function ValidateInput ( Request $request)
+    {
+        $messages  = [
+            'MatchingUserPassword' => 'Wrong password. Try again please.',
+        ];
+
+        $rules = [
+            'Username' => 'required|max:20|regex:/^[a-zA-Z0-9\s_]+$/',
+            'Password' =>'required|MatchingUserPassword',
+        ];
+
+        $validator= Validator::make($request->all(),$rules,$messages);
+        return $validator;
+    }
+
+    protected function RemoveUser( Request $request)
+    {
+        if(Auth::check()&&Auth::user()->role==2)
+        {
+            $validator=$this->ValidateInput($request);
+            if ($validator->fails())
+                return redirect()->back()->withErrors($validator)->withInput();
+            else{
+                $data=$request->all();
+                $user=User::where('username','=',$data['Username']);
+                if($user->count()==0)
+                    return redirect()->back()->with('message', 'No Customer/Publisher is found with this username!');
+                $user->delete();
+                return view('Done');
+            }
+
+        }
+        else
+            abort(404);
+
+    }
+
 }

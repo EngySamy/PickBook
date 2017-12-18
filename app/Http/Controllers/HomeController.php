@@ -39,7 +39,21 @@ class HomeController extends Controller
             $items=$items->paginate(5);        //Display 10 items per page! This is magic! //Eager Loading!
         $categories = HomeController::showCategories();
         $languages = HomeController::showLanguages();
-        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items]);
+        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items , 'remove'=>false]);
+    }
+
+    public function index2(Request $request)
+    {
+        $items = item::with('images');
+        if(!is_null($items))
+            $items=$items->paginate(5);        //Display 10 items per page! This is magic! //Eager Loading!
+        $categories = HomeController::showCategories();
+        $languages = HomeController::showLanguages();
+        if(Auth::check() && Auth::user()->role==2) //admin want remove book -- so show a message for that
+            $remove=true;
+        else
+            $remove=false;
+        return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items ,'remove'=>$remove ]);
     }
 
     public function showCategories()

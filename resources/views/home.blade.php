@@ -13,8 +13,11 @@
 
 <div class="container">
 
-
         <div class="row">
+
+
+
+
             <div class="col-md-3">
                 <span class="lead">Categories</span>
                 <div class="list-group" style="padding-top: 20px">
@@ -44,6 +47,19 @@
                 <div class="row">
                 <div class="col-md-12">
                     <span class="lead">Featured</span>
+                    @if($remove==true)
+
+                        <div class="panel panel-default" style="margin-top: 16px">
+
+                            <div class="panel-body" style=" font-size: 14px; text-align:center;">
+                                Choose the book you want to remove, then click Remove Book
+                            </div>
+                        </div>
+
+                    @endif
+
+
+
                     @if(Auth::check() && Auth::user()->role==4)
                     <div class="btn-group pull-right">
                         <a href="/home/0/index" class="btn btn-primary btn1">Publish</a>
