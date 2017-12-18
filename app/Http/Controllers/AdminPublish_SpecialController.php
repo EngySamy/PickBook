@@ -17,9 +17,9 @@ use DB;
 use Validator;
 use App\Item;
 
-class AdminSell_SpecialController extends Controller
+class AdminPublish_SpecialController extends Controller
 {
-    public function ShowSell_Special($id,Request $request)
+    public function ShowPublish_Special($id, Request $request)
     {
         if($id!=0 && $id!=1)
             abort(404);
@@ -43,7 +43,7 @@ class AdminSell_SpecialController extends Controller
             abort(404);
     }    
 
-    public function ShowSell_SpecialDetail($id,$req,Request $request)// 
+    public function ShowPublish_SpecialDetail($id, $req, Request $request)// 
     {
         if(Auth::check()&&Auth::user()->role==2)
             {
@@ -59,7 +59,7 @@ class AdminSell_SpecialController extends Controller
 
                 $images = $Request->images;
                 //$qs=Auth::user()->id;
-                return view('Sell_SpecialDetails',['Request'=>$Request,'images'=>$images,'id'=>$id]);
+                return view('Publish_SpecialDetails',['Request'=>$Request,'images'=>$images,'id'=>$id]);
                 }
         else
             abort(404);
@@ -92,7 +92,7 @@ class AdminSell_SpecialController extends Controller
 
     }
 
-    public function AcceptSellRequest($id,Request $request)
+    public function AcceptPublishRequest($id, Request $request)
     {
         if(Auth::check()&&Auth::user()->role==2)
             {
@@ -116,7 +116,7 @@ class AdminSell_SpecialController extends Controller
             abort(404);
     }
 
-    public function RefuseSellRequest($id,Request $request)
+    public function RefusePublishRequest($id, Request $request)
     {
         if(Auth::check()&&Auth::user()->role==2)
             {

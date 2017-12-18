@@ -52,26 +52,7 @@ class AdminBuyController extends Controller
             abort(404);
     } 
 
-    public function ServeBuy_Similar($id,$req,Request $request)
-    {
-        if(Auth::check()&&Auth::user()->role==2)
-            {
-                if($id!=2 && $id!=3)
-                    abort(404);
-                if($id==2) //buy
-                {
-                    $affected=DB::table('buy_requests')->where('id','=',$req)->update(array('qs_id'=> Auth::user()->id));
-                }
-                else
-                     $affected=DB::table('special_orders_similar')->where('id','=',$req)->update(array('qs_id'=> Auth::user()->id));
-                
-                if($affected==0)
-                    {abort(404);}
-                return redirect()->back();
-            }
-        else
-            abort(404);
-    }
+    
 
     public function ArchiveBuy_Similar($id,$req,Request $request)
     {
@@ -100,35 +81,7 @@ class AdminBuyController extends Controller
         else
             abort(404);
     }
-
-
-    public function MsgInBuy_Similar($id,$req,Request $request)
-    {
-         if(Auth::check()&&Auth::user()->role==2)//customer
-        {
-            if($id!=2 && $id!=3)
-                abort(404);
-            if($id==2) 
-            {
-                $reqReplies = BuyReply::Get($req);
-
-                $Close=BuyRequest::where('id','=',$req)
-                    ->select('closed')
-                    ->first();
-            } 
-            else{
-                $reqReplies=SpecialOrderReply2::Get($req);
-
-                $Close=SpecialOrderSimilar::where('id','=',$req)
-                    ->select('closed')
-                    ->first();
-            } 
-          
-            return view('MsgDetail',['reqReplies'=>$reqReplies,'req'=>$req,'id'=>$id,'Close'=>$Close]); 
-        }
-        else 
-            abort(404);
-    } 
+    
 
     public function ReofferItem($id,$req,Request $request)
     {

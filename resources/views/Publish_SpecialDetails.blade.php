@@ -13,6 +13,64 @@
 
         <div class="row">
 
+            <div class="col-md-5">
+
+                <div class="caption-full description well">
+                    <h4 class="text-center"><a href="#">{{$Request->name}}</a></h4>
+                    <ul>
+                        <li style="padding-top: 20px;">
+
+                            <h4>
+                                @if($id==0)
+                                    <strong>Publish Request No. </strong>
+                                @else
+                                    <strong>Special Order No. </strong>
+                                @endif
+
+                                <h5 class="text-muted" style="padding-left: 25px">{{$Request->id}}</h5>
+                            </h4>
+
+                        <li style="padding-top: 20px;">
+                            <h4><strong>Category </strong>
+                                @if($Request->category!=null)
+                                    <h5 class="text-muted" style="padding-left: 25px">{{$Request->category->name}}</h5>
+                                @else
+                                    <h5 class="text-muted" style="padding-left: 25px">None</h5>
+                                @endif
+                            </h4>
+
+                        </li>
+                        <li style="padding-top: 20px;">
+                            <h4> <strong>Language </strong>
+                                @if($Request->language!=null)
+                                    <h5 class="text-muted" style="padding-left: 25px">{{$Request->language->name}}</h5>
+                                @else
+                                    <h5 class="text-muted" style="padding-left: 25px">None</h5>
+                                @endif
+                            </h4>
+                        </li>
+                        <li style="padding-top: 20px;">
+                            <h4><strong>Author </strong>
+                                <h5 class="text-muted" style="padding-left: 25px"> {{$Request->author}} </h5>
+
+                            </h4>
+                        </li>
+                        <li style="padding-top: 20px;">
+                            <h4><strong>Publisher </strong>
+                                <h5 class="text-muted" style="padding-left: 25px">{{$Request->Customer->name}}</h5>
+                            </h4>
+                        </li>
+                        <li style="padding-top: 20px;">
+                            <h4> <strong>Offered Price </strong>
+                                <h5 class="text-muted" style="padding-left: 25px">{{$Request->price}} LE</h5>
+                            </h4>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+
             <div class="col-md-7">
                 <div class="well">
                   @if(Session::has('message'))
@@ -79,63 +137,7 @@
                 
             </div>
                 
-             <div class="col-md-5">
 
-                   <div class="caption-full description well">
-                        <h4 class="text-center"><a href="#">{{$Request->name}}</a></h4>
-                        <ul>
-                          <li style="padding-top: 20px;">
-                         
-                            <h4>
-                            @if($id==0)
-                            <strong>Publish Request No. </strong>
-                            @else
-                            <strong>Special Order No. </strong>
-                            @endif
-
-                            <h5 class="text-muted" style="padding-left: 25px">{{$Request->id}}</h5>
-                            </h4>
-
-                          <li style="padding-top: 20px;">
-                            <h4><strong>Category </strong>
-                            @if($Request->category!=null)
-                            <h5 class="text-muted" style="padding-left: 25px">{{$Request->category->name}}</h5>
-                            @else
-                            <h5 class="text-muted" style="padding-left: 25px">None</h5>
-                            @endif
-                            </h4>
-                            
-                          </li>
-                          <li style="padding-top: 20px;">
-                            <h4> <strong>Language </strong>
-                            @if($Request->language!=null)
-                            <h5 class="text-muted" style="padding-left: 25px">{{$Request->language->name}}</h5>
-                            @else
-                            <h5 class="text-muted" style="padding-left: 25px">None</h5>
-                            @endif
-                            </h4>     
-                          </li>
-                          <li style="padding-top: 20px;">
-                              <h4><strong>Author </strong>
-                              <h5 class="text-muted" style="padding-left: 25px"> {{$Request->author}} </h5>
-
-                              </h4>
-                          </li>
-                          <li style="padding-top: 20px;">
-                              <h4><strong>Publisher </strong>
-                              <h5 class="text-muted" style="padding-left: 25px">{{$Request->Customer->name}}</h5>
-                              </h4>
-                          </li>
-                          <li style="padding-top: 20px;">
-                             <h4> <strong>Offered Price </strong>
-                              <h5 class="text-muted" style="padding-left: 25px">{{$Request->price}} LE</h5>
-                             </h4>
-                          </li>
-                         
-                            
-                        </ul>
-                        </div>
-                </div>
 
     </div>
     </div>

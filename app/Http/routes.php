@@ -37,9 +37,9 @@ Route::post('/item/{item?}/BS','ItemController@Buy'); //  order
 Route::post('/item/{item?}/review','ItemController@review'); 
 
 
-// offer item   (publisher request)/ and special orders
-Route::get('/home/{id?}/index','NewItemController@index');	//0 id for sell , 1 special
-Route::post('/home/{id?}/Submit','NewItemController@Submit'); //submit sell request or special order
+//  (publisher request)/ and special orders
+Route::get('/home/{id?}/index','NewItemController@index');	//0 id for publish , 1 special
+Route::post('/home/{id?}/Submit','NewItemController@Submit'); //submit publish request or special order
 Route::get('/home/ThankYou','NewItemController@ThankYou');
 
 //User Profile
@@ -47,8 +47,6 @@ Route::get('/myprofile', 'UserProfileController@View');
 Route::get('/editprofile', 'UserProfileController@Edit');
 Route::post('/editprofile/submit','UserProfileController@SubmitEdit');
 Route::post('/myprofile/changepassword','UserProfileController@ChangePassword');
-
-//Route::get('/{id?}/profile','ProfileItemsController@index');
 
 
 //Admin Home
@@ -64,18 +62,15 @@ Route::get('/home/toremovebook', 'HomeController@index2');
 Route::get('/toremoveuser','AdminHomeController@GoToRemoveUser');
 Route::post('/user/remove','AdminHomeController@RemoveUser');
 
-//Admin Sell and Special
-Route::get('/{id?}/show/SS','AdminSell_SpecialController@ShowSell_Special'); //show sell id:0 ,special id:1
-Route::get('/{id?}/{req?}/detail','AdminSell_SpecialController@ShowSell_SpecialDetail');//detail sell0,sp1
-Route::get('/{id?}/{req?}/serve/SS','AdminSell_SpecialController@ServeSell_Special');//serve sell0special1
-Route::post('/{id?}/accept','AdminSell_SpecialController@AcceptSellRequest');//only for sell
-Route::post('/{id?}/refuse','AdminSell_SpecialController@RefuseSellRequest');//only for sell
-Route::get('/{id?}/{req?}/messages/SS','AdminSell_SpecialController@MsgInSell_Special');
-Route::post('/{id?}/archive/S','AdminSell_SpecialController@ArchiveSpecialOrder');//only for special
+//Admin Publish requests and Special orders
+Route::get('/{id?}/show/SS','AdminPublish_SpecialController@ShowPublish_Special'); //show Publish id:0 ,special id:1
+Route::get('/{id?}/{req?}/detail','AdminPublish_SpecialController@ShowPublish_SpecialDetail');//detail Publish,sp1
+Route::post('/{id?}/accept','AdminPublish_SpecialController@AcceptPublishRequest');//only for Publish
+Route::post('/{id?}/refuse','AdminPublish_SpecialController@RefusePublishRequest');//only for Publish
+Route::post('/{id?}/archive/S','AdminPublish_SpecialController@ArchiveSpecialOrder');//only for special
 
 //Admin Buy requests 
 Route::get('/show/BS','AdminBuyController@ShowBuy');
-Route::get('/{req?}/serve/BS','AdminBuyController@ServeBuy_Similar');
 Route::post('/{req?}/archive/BS','AdminBuyController@ArchiveBuy_Similar');
 Route::post('/{req?}/reoffer/BS','AdminBuyController@ReofferItem');
 
