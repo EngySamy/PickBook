@@ -74,6 +74,20 @@
                             </h4>
                     </ul>
                 </div>
+
+                <h4><strong>Add review</strong></h4>
+
+
+                <form id="review_form" action="/item/{{$item->id}}/review" method="post" >
+                    {!! csrf_field() !!}
+
+                    <div class="form-group">
+                        <textarea id="review" name="review" class="form-control" rows="3" id="review" placeholder="write your review ... "></textarea>
+                    </div>
+                    <button id="review_button" type="submit" class="btn btn-primary" >Review</button>
+
+                </form>
+
             </div>
 
             <div class="col-md-7">
@@ -208,10 +222,15 @@
 
                 </div>
                 <!----- Reviews-------->
-                <div class="caption-full description well">
-                    <h4><strong>Reviews</strong></h4>
+                <h4><strong>Reviews</strong></h4>
 
-                </div>
+
+                    @foreach($reviews as $review)
+                        <div class="caption-full description well">
+                            {{$review->value}}
+
+                        </div>
+                    @endforeach
             </div>
                     
 

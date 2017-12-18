@@ -18,5 +18,10 @@ class Review extends Model
 
         Review::create(['value'=>$value,'user_id'=>$user,'item_id'=>$item]);
     }
+    
+    public static  function getItemReviews($item){
+        $reviews=Review::where('item_id','=',$item);
+        return $reviews;
+    }
 
 }

@@ -29,6 +29,6 @@ class CreatePublisherRequestImagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sellrequest_images');
+        Schema::drop('publisher_requests_images');
     }
 }

@@ -29,7 +29,7 @@
                                 <label class="col-md-4 control-label">Book Name</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" maxlength="20" pattern="^[a-zA-Z0-9\s_]+$" title="An item name should contain letters, underscores, and numbers only."  class="form-control input-sm" name="Item_Name" value="{{ old('Item_Name') }}" placeholder="My_Book1">
+                                    <input type="text" maxlength="50" pattern="^[a-zA-Z0-9\s_]+$" title="An item name should contain letters, underscores, and numbers only."  class="form-control input-sm" name="Item_Name" value="{{ old('Item_Name') }}" placeholder="My_Book1">
 
                                     @if ($errors->has('Item_Name'))
                                         <span class="help-block">

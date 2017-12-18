@@ -34,7 +34,8 @@ Route::get('/{id?}/item', 'ItemController@show');		// '?' means sending the id t
 
 Route::get('/search/{keyword?}', 'searchcontroller@search'); //searchcontroller 
 Route::post('/item/{id}/rate','ItemController@rate');			//rate an item
-Route::post('/item/{item?}/BS','ItemController@Buy'); // 
+Route::post('/item/{item?}/BS','ItemController@Buy'); //  order
+Route::post('/item/{item?}/review','ItemController@review'); 
 
 
 // offer item   (publisher request)/ and special orders

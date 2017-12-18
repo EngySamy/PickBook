@@ -36,6 +36,6 @@ class CreatePublisherRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sell_requests');
+        Schema::drop('publisher_requests');
     }
 }

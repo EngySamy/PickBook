@@ -62,7 +62,7 @@ class NewItemController extends Controller
           ];
 
         $rules = [
-            'Item_Name' => 'required|max:20|regex:/^[a-zA-Z0-9\s_]+$/',
+            'Item_Name' => 'required|max:50|regex:/^[a-zA-Z0-9\s_]+$/',
             'Author_Name' => 'required|max:20|regex:/^[a-zA-Z]+$/',
             'Price' => 'required|numeric|digits_between:1,6',
             'Categories' =>'required',

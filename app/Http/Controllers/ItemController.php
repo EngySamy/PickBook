@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Review;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -47,8 +48,10 @@ class ItemController extends Controller
             //}
 
             $avg = $item->AverageRating();
+            
+            $reviews=Review::getItemReviews($itemid);
 
-            return view('item',['item'=>$item,'images'=>$images,'rate'=>$user_rate,'avg_rate'=>$avg]);
+            return view('item',['item'=>$item,'images'=>$images,'rate'=>$user_rate,'avg_rate'=>$avg,'reviews'=>$reviews]);
         }
         else {
             return Redirect::to('login')->with('message', 'Login/Register to use this feature.');
@@ -141,4 +144,18 @@ class ItemController extends Controller
         else 
             abort(404);
     }
+    public function review(Item $id,Request $request)
+    {
+        if(Auth::check())
+        {
+            $data=$request->all();
+            Review::Review(Auth::user()->id,$id,$data['review']);
+
+            return redirect()->back()->with('message', 'Your review has been added successfully!');
+        }
+        else {
+            return Redirect::to('login')->with('message', 'Login/Register to use this feature.');
+        }
+    }
+
 }
