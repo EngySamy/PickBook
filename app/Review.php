@@ -14,8 +14,6 @@ class Review extends Model
 
     public static function Review($user,$item,$value)
     {
-        //DB::table('rating')->where('user_id','=',Auth::user()->id)->where('item_id','=',$id->id)->update(array('value'=>request()->rateval));
-
         Review::create(['value'=>$value,'user_id'=>$user,'item_id'=>$item]);
     }
     

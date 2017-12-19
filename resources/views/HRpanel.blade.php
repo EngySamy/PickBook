@@ -20,7 +20,7 @@
 @section('content')
 <body>
 <div class="jumbotron text-center">
-  <h2>Where to?</h2>  
+  <h2>HR Panel</h2>
 </div>
   <div class="container">
   <div class="row">

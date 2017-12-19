@@ -18,9 +18,9 @@ use App\SpecialOrderImage;
 
 class NewItemController extends Controller
 {
-    public function index($id,Request $request) //offer item
+    public function index($id,Request $request)
     {
-        if($id==0 || $id==1)  //0 offer item ,1 special order
+        if($id==0 || $id==1)  //0 publisher request ,1 special order
             {
                 if(Auth::check()&& (Auth::user()->role==1 || Auth::user()->role==4))
                 {
@@ -79,7 +79,7 @@ class NewItemController extends Controller
     	
     }
 
-    protected function Store0(array $data) //offer item
+    protected function Store0(array $data) //publisher request
     {
         $array =null;
         $ReturnCode = $this->multiple_upload($array);
@@ -130,11 +130,6 @@ class NewItemController extends Controller
             'requester_id' => Auth::user()->id
             ]);
 
-        /*//for each img // to be modified
-        $sell_request_img=SpecialOrderImage::create([
-            'link'=>"/imgitems/1.jpg",
-            'request_id'=>$sell_request->id,
-            ]);*/
         $special_order->save();
         $request_id = $special_order->id;
 
@@ -160,11 +155,7 @@ class NewItemController extends Controller
             abort(404);
         }
     	$data=$request->all();
-        // to be modified
-        /*if( $request->hasFile('File') ) {
-            $file = $request->file('File');
-            $file->move("/imgitems","{$sell_request->id}");
-        }*/
+
         $FinishCode = 0;
     	if(Auth::check())
     	{
@@ -225,7 +216,7 @@ class NewItemController extends Controller
        if($uploadcount!=$file_count)
          return 0;
      return 1;
-     // else return view('ThankYou');
+
   }
 
 

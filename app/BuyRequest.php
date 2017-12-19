@@ -24,11 +24,6 @@ class BuyRequest extends Model
     }
     
 
-    /*public static function Store($item)
-    {
-        DB::table('items')->where('id','=',$item)->update(array('sold'=>true,'buyer_id'=>Auth::user()->id));
-    }*/
-
     public static function Archive($req)
     {
         DB::table('buy_requests')->where('id','=',$req)->update(array('closed' => true));

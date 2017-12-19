@@ -36,7 +36,7 @@ class HomeController extends Controller
     {
         $items = item::with('images');
         if(!is_null($items))
-            $items=$items->paginate(5);        //Display 10 items per page! This is magic! //Eager Loading!
+            $items=$items->paginate(5);
         $categories = HomeController::showCategories();
         $languages = HomeController::showLanguages();
         return view('home',['categories'=>$categories,'languages'=>$languages,'items'=>$items , 'remove'=>false]);
@@ -46,7 +46,7 @@ class HomeController extends Controller
     {
         $items = item::with('images');
         if(!is_null($items))
-            $items=$items->paginate(5);        //Display 10 items per page! This is magic! //Eager Loading!
+            $items=$items->paginate(5);        //Display 10 items per page!  //Eager Loading!
         $categories = HomeController::showCategories();
         $languages = HomeController::showLanguages();
         if(Auth::check() && Auth::user()->role==2) //admin want remove book -- so show a message for that

@@ -29,7 +29,7 @@ Route::get('/HRPanel/viewcomplaints', 'HRController@viewcomplaints');
 Route::get('/HRPanel/viewsuggestions', 'HRController@viewsuggestions');
 Route::get('/HRPanel', 'HRController@index');
 
-Route::get('/item/{id?}', 'ItemController@show');		// '?' means sending the id to the controller!
+Route::get('/item/{id?}', 'ItemController@show');
 Route::get('/{id?}/item', 'ItemController@show');		// '?' means sending the id to the controller!
 Route::get('/search/{keyword?}', 'searchcontroller@search'); //searchcontroller 
 Route::post('/item/{id}/rate','ItemController@rate');			//rate an item
@@ -50,9 +50,6 @@ Route::post('/myprofile/changepassword','UserProfileController@ChangePassword');
 
 
 //Admin Home
-Route::get('/AdminHome','AdminHomeController@index');
-Route::get('/{customer?}/customer','AdminHomeController@ShowCustomerInfo');
-
 Route::get('/Admin/AddPublisher','AdminHomeController@ViewAddPublisher');
 Route::post('/Admin/AddPublisher/Add','AdminHomeController@AddPublisher');
 //Admin Remove book
@@ -71,8 +68,7 @@ Route::post('/{id?}/archive/S','AdminPublish_SpecialController@ArchiveSpecialOrd
 
 //Admin Buy requests 
 Route::get('/show/BS','AdminBuyController@ShowBuy');
-Route::post('/{req?}/archive/BS','AdminBuyController@ArchiveBuy_Similar');
-Route::post('/{req?}/reoffer/BS','AdminBuyController@ReofferItem');
+Route::post('/{req?}/archive/BS','AdminBuyController@ArchiveBuy');
 
 
 
